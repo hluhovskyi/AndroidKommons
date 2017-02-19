@@ -25,6 +25,7 @@ enum class Permission(val value: String) {
     ACCESS_NETWORK_STATE(Manifest.permission.ACCESS_NETWORK_STATE),
     ACCESS_NOTIFICATION_POLIC(Manifest.permission.ACCESS_NOTIFICATION_POLICY),
     ACCESS_WIFI_STATE(Manifest.permission.ACCESS_WIFI_STATE),
+    ACCESS_FINE_LOCATION(Manifest.permission.ACCESS_FINE_LOCATION),
     ACCOUNT_MANAGER(Manifest.permission.ACCOUNT_MANAGER),
     ADD_VOICEMAIL(Manifest.permission.ADD_VOICEMAIL),
     BATTERY_STATS(Manifest.permission.BATTERY_STATS),
