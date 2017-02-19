@@ -13,7 +13,7 @@ Small library that contains common extensions for Android. Aims:
 
 Before
 
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     firstView.visibility = View.VISIBLE
@@ -23,7 +23,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 ```
 After
 
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     firstView.isVisible = true
@@ -35,7 +35,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 
 Before
 
-```
+```kotlin
 private lateinit linearLayout: LinearLayout
  
 override fun onCreate(savedInstanceState: Bundle) {
@@ -44,7 +44,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 ```
 After
 
-```
+```kotlin
 private lateinit linearLayout: LinearLayout
  
 override fun onCreate(savedInstanceState: Bundle) {
@@ -55,7 +55,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 #####Padding
 
 Before
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     firstView.setPadding(firstView.paddingLeft, firstView.paddingTop, first.paddingRight, 16)
@@ -64,7 +64,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 }
 ```
 After
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     firstView.setOptionalPadding(bottom = 16)
@@ -76,7 +76,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 #####Post runnables
 
 Before
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     refreshLayout.postDelayed({
@@ -87,7 +87,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 }
 ```
 After
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     refreshLayout.postDelayedApply(3000) {
@@ -105,7 +105,7 @@ Also see _postApply_,  _postLet_, _postDelayedLet_
 
 Before
 
-```
+```kotlin
 class AccountRepository {
  
     val sharedPreferences: SharedPreferences
@@ -130,7 +130,7 @@ class AccountRepository {
 
 After
 
-```
+```kotlin
 class AccountRepository : SharedPreferencesProvider {
  
     override val sharedPreferences: SharedPreferences
@@ -146,7 +146,7 @@ class AccountRepository : SharedPreferencesProvider {
 ##### Shortcuts
 Before
 
-```
+```kotlin
 sharedPreferences.edit()
     .putInt(CURRENT_USER_ID, userId)
     .apply()
@@ -159,7 +159,7 @@ sharedPreferences.edit()
 ```
 
 After
-```
+```kotlin
 sharedPreferences.save(CURRENT_USER_ID, userId)
  
     ...
@@ -171,7 +171,7 @@ sharedPreferences.save(BEARER_TOKEN, token, force = true)
 
 ##### Compat
 Before
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     val color = ContextCompat.getColor(this, R.color.cyan)
@@ -182,7 +182,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 ```
 
 After
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     val color = getThemedColor(R.color.cyan)
@@ -194,7 +194,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 
 ##### Services
 Before
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -204,7 +204,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 ```
 
 After
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     val inflater = layoutInflater
@@ -216,7 +216,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 ##### Toasts
 
 Before
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     Toast.makeText(this, "Hi!", Toast.LENGTH_SHORT).show()
@@ -226,7 +226,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 ```
 
 After
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     showShortToast("Hi!")
@@ -238,7 +238,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 ##### Permissions
 
 Before
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
@@ -252,7 +252,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 ```
 
 After
-```
+```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
     if (isPermissionsGranted(Permission.WRITE_EXTERNAL_STORAGE, Permission.ACCESS_FINE_LOCATION)) {
