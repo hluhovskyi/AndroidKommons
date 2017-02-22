@@ -32,8 +32,6 @@ import android.content.*
 import android.content.pm.LauncherApps
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
-import android.content.res.Resources
-import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.hardware.ConsumerIrManager
 import android.hardware.SensorManager
@@ -61,7 +59,6 @@ import android.support.annotation.*
 import android.support.v4.content.ContextCompat
 import android.telecom.TelecomManager
 import android.telephony.TelephonyManager
-import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -348,19 +345,21 @@ fun Context.convertToSp(pixels: Int): Int {
     return (pixels * resources.displayMetrics.scaledDensity).toInt()
 }
 
-fun Context.isNetworkAvailable(): Boolean {
-    val networkInfo = connectivityManager.activeNetworkInfo
-    return networkInfo?.isConnectedOrConnecting ?: false
-}
-
-fun Context.isWifiNetworkAvailable(): Boolean {
-    val networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
-    return networkInfo?.isConnectedOrConnecting ?: false
-}
-
 fun Context.isPackageInstalled(packageName: String): Boolean = try {
     packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
     true
 } catch (e: PackageManager.NameNotFoundException) {
     false
 }
+
+/**
+ * Connections
+ */
+val Context.hasConnection: Boolean
+    get() = connectivityManager.activeNetworkInfo?.isConnectedOrConnecting ?: false
+
+val Context.isConnectedToWifi: Boolean
+    get() = connectivityManager.activeNetworkInfo?.type == ConnectivityManager.TYPE_WIFI
+
+val Context.isConnectedToMobile: Boolean
+    get() = connectivityManager.activeNetworkInfo?.type == ConnectivityManager.TYPE_MOBILE
