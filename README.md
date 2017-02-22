@@ -270,6 +270,61 @@ override fun onCreate(savedInstanceState: Bundle) {
 }
 ```
 
+### SQLiteDatabase
+
+##### Queries
+
+Before
+
+```kotlin
+val db: SQLiteDatabase
+ 
+override fun getAllUsers() {
+    ...
+    val cursor = db.query(TABLE_USERS, null, null, null, null, null, COLUMN_NAME)
+    ...
+    db.delete(TABLE_USERS, null, null)
+    ...
+}
+```
+After
+
+```kotlin
+val db: SQLiteDatabase
+ 
+override fun getAllUsers() {
+    ...
+    val cursor = db.executeQuery(table = TABLE_USERS, orderBy = COLUMN_NAME)
+    ...
+    db.executeDelete(table = TABLE_USERS)
+    ...
+}
+```
+
+Also see _executeInsert_, _executeUpdate_.
+
+##### _Use_ with SQLiteDatabase and Cursor
+ 
+Before
+```kotlin
+fun runQuery(helper: SQLiteOpenHelper) {
+    val db = helper.writableDatabase
+    val cursor = db.query( ... )
+    ...
+    cursor.close()
+    db.close()
+}
+```
+After
+```kotlin
+fun runQuery(helper: SQLiteOpenHelper) = helper.writableDatabase.use { db ->
+    db.query( ... ).use { cursor ->
+ 
+    }
+}
+```
+
+**Important**: you should use extension method, not from kotlin-stlib because you can get `ClassCastException`. See [this link](http://stackoverflow.com/questions/39430179/kotlin-closable-and-sqlitedatabase-on-android).
 ## License
 
 ```

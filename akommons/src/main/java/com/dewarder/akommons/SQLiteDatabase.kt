@@ -47,9 +47,10 @@ fun SQLiteDatabase.executeQuery(table: String,
                                 selectionArgs: Array<String>? = null,
                                 groupBy: String? = null,
                                 having: String? = null,
-                                orderBy: String? = null): Cursor {
+                                orderBy: String? = null,
+                                limit: String? = null): Cursor {
 
-    return query(table, columns, selection, selectionArgs, groupBy, having, orderBy)
+    return query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit)
 }
 
 fun SQLiteDatabase.executeInsert(table: String,
