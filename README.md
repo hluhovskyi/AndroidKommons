@@ -36,7 +36,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 Before
 
 ```kotlin
-private lateinit linearLayout: LinearLayout
+private lateinit var linearLayout: LinearLayout
  
 override fun onCreate(savedInstanceState: Bundle) {
     linearLayout = findViewById(R.id.linearLayout) as LinearLayout
@@ -45,7 +45,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 After
 
 ```kotlin
-private lateinit linearLayout: LinearLayout
+private lateinit var linearLayout: LinearLayout
  
 override fun onCreate(savedInstanceState: Bundle) {
     linearLayout = getViewById(R.id.linearLayout)

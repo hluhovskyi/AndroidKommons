@@ -32,6 +32,8 @@ import android.content.*
 import android.content.pm.LauncherApps
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.content.res.Resources
+import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.hardware.ConsumerIrManager
 import android.hardware.SensorManager
@@ -59,7 +61,9 @@ import android.support.annotation.*
 import android.support.v4.content.ContextCompat
 import android.telecom.TelecomManager
 import android.telephony.TelephonyManager
+import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityManager
 import android.view.accessibility.CaptioningManager
@@ -286,7 +290,7 @@ fun Context.showLongToast(text: String) {
 }
 
 /**
- * Animations
+ * Resources
  */
 fun Context.getAnimation(@AnimRes id: Int): Animation {
     return AnimationUtils.loadAnimation(this, id)
@@ -330,6 +334,12 @@ fun Context.isPermissionsGranted(vararg permissions: String): Boolean {
 /**
  * Other
  */
+val Context.isRtl: Boolean
+    get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+
+val Context.isLtr: Boolean
+    get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_LTR
+
 fun Context.convertToDp(pixels: Int): Int {
     return (pixels * resources.displayMetrics.density).toInt()
 }
@@ -349,7 +359,7 @@ fun Context.isWifiNetworkAvailable(): Boolean {
 }
 
 fun Context.isPackageInstalled(packageName: String): Boolean = try {
-    packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+    packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
     true
 } catch (e: PackageManager.NameNotFoundException) {
     false

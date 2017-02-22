@@ -23,7 +23,7 @@ import android.content.res.Resources
 import android.content.res.TypedArray
 import android.util.AttributeSet
 
-inline fun <R> Resources.Theme.useStyledAttributes(set: AttributeSet?,
+inline fun <R> Resources.Theme.useStyledAttributes(set: AttributeSet? = null,
                                                    attrs: IntArray,
                                                    defStyleAttr: Int = 0,
                                                    defStyleRes: Int = 0,
@@ -47,11 +47,12 @@ inline fun <R> Resources.Theme.useStyledAttributes(set: AttributeSet?,
     }
 }
 
-inline fun Resources.Theme.usingStyledAttributes(set: AttributeSet?,
+inline fun Resources.Theme.applyStyledAttributes(set: AttributeSet? = null,
                                                  attrs: IntArray,
                                                  defStyleAttr: Int = 0,
                                                  defStyleRes: Int = 0,
                                                  block: TypedArray.() -> Unit) {
+
     val array = obtainStyledAttributes(set, attrs, defStyleAttr, defStyleRes)
     var recycled = false
     try {
