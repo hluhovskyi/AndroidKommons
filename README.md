@@ -5,6 +5,14 @@ Small library that contains common extensions for Android. Aims:
 - Reduce count of "Compat" and "Utils" classes
 - Remove boilerplate code
 
+## Getting started
+
+Add library as dependency to your build.gradle.
+
+```
+compile 'com.dewarder:akommons:0.0.1'
+```
+
 ## Features
 
 ### Views
@@ -58,7 +66,7 @@ Before
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle) {
     ...
-    firstView.setPadding(firstView.paddingLeft, firstView.paddingTop, first.paddingRight, 16)
+    firstView.setPadding(firstView.paddingLeft, firstView.paddingTop, firstView.paddingRight, 16)
     secondView.setPadding(16, 16, 16, 16)
     ...
 }
