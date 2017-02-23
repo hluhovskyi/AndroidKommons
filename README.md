@@ -10,7 +10,7 @@ Small library that contains common extensions for Android. Aims:
 Add library as dependency to your build.gradle.
 
 ```
-compile 'com.dewarder:akommons:0.0.2'
+compile 'com.dewarder:akommons:0.0.3'
 ```
 
 ## Features
