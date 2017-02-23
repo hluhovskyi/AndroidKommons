@@ -76,6 +76,7 @@ import android.widget.Toast
 inline fun <reified T : Any> Context.intentFor(action: String? = null,
                                                flags: Int = -1,
                                                noinline init: (Intent.() -> Unit)? = null): Intent {
+
     val intent = Intent(this, T::class.java)
     if (action != null) {
         intent.action = action
@@ -107,6 +108,40 @@ inline fun <reified T : Service> Context.startService(action: String? = null,
                                                       noinline init: (Intent.() -> Unit)? = null) {
 
     startService(intentFor<T>(action = action, init = init))
+}
+
+/**
+ * PendingIntent
+ */
+
+inline fun <reified T : Any> Context.pendingIntentFor(intent: Intent,
+                                                      requestCode: Int = 0,
+                                                      pendingIntentFlags: Int = 0): PendingIntent {
+    val javaClass = T::class.java
+    return when {
+        Activity::class.java.isAssignableFrom(javaClass) -> {
+            PendingIntent.getActivity(this, requestCode, intent, pendingIntentFlags)
+        }
+
+        Service::class.java.isAssignableFrom(javaClass) -> {
+            PendingIntent.getService(this, requestCode, intent, pendingIntentFlags)
+        }
+
+        BroadcastReceiver::class.java.isAssignableFrom(javaClass) -> {
+            PendingIntent.getBroadcast(this, requestCode, intent, pendingIntentFlags)
+        }
+
+        else -> throw IllegalStateException("PendingIntent must be used only with Activity, Service or BroadcastReceiver")
+    }
+}
+
+inline fun <reified T : Any> Context.pendingIntentFor(action: String? = null,
+                                                      intentFlags: Int = -1,
+                                                      requestCode: Int = 0,
+                                                      pendingIntentFlags: Int = 0,
+                                                      noinline init: (Intent.() -> Unit)? = null): PendingIntent {
+
+    return pendingIntentFor<T>(intentFor<T>(action, intentFlags, init), requestCode, pendingIntentFlags)
 }
 
 /**

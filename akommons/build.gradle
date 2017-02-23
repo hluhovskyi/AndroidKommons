@@ -3,15 +3,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-group = 'com.dewarder'
-version = '0.0.2'
-
 ext {
+    artifactVersion = '0.0.3'
     artifactName = 'akommons'
     siteUrl = 'https://github.com/dewarder/Android-Kotlin-Commons'
     gitUrl = 'https://github.com/dewarder/Android-Kotlin-Commons.git'
 }
 
+version = artifactVersion
+group = 'com.dewarder'
 
 android {
     compileSdkVersion 25
@@ -20,7 +20,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 25
         versionCode 1
-        versionName version
+        versionName artifactVersion
     }
     buildTypes {
         release {
@@ -109,10 +109,10 @@ bintray {
         licenses = ['Apache-2.0']
         vcsUrl = gitUrl
         version {
-            name = version
-            desc = 'Test'
+            name = artifactVersion
+            desc = 'Added extensions for PendingIntent'
             released = new Date()
-            vcsTag = "v$version"
+            vcsTag = "v$artifactVersion"
         }
     }
 }
