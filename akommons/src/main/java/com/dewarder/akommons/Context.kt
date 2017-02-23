@@ -32,6 +32,7 @@ import android.content.*
 import android.content.pm.LauncherApps
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.hardware.ConsumerIrManager
 import android.hardware.SensorManager
@@ -371,6 +372,12 @@ val Context.isRtl: Boolean
 
 val Context.isLtr: Boolean
     get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_LTR
+
+val Context.isLandscape: Boolean
+    get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+val Context.isPortrait: Boolean
+    get() = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
 fun Context.convertToDp(pixels: Int): Int {
     return (pixels * resources.displayMetrics.density).toInt()
