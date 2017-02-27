@@ -12,12 +12,12 @@ Small library that contains common extensions for Android. Aims:
 Add library as dependency to your build.gradle.
 
 ```
-compile 'com.dewarder:akommons:0.0.3'
+compile 'com.dewarder:akommons:0.0.4'
 ```
 
 ## Features
 
-### Views
+### [Views](https://github.com/dewarder/Android-Kotlin-Commons/wiki/View)
 
 ##### Visibility
 
@@ -107,9 +107,9 @@ override fun onCreate(savedInstanceState: Bundle) {
     ...
 }
 ```
-Also see _postApply_,  _postLet_, _postDelayedLet_
+Also see [_postApply_](https://github.com/dewarder/Android-Kotlin-Commons/wiki/View#inline-fun--tpostapplycrossinline-block-t---unit),  [_postLet_](https://github.com/dewarder/Android-Kotlin-Commons/wiki/View#inline-fun--tpostletcrossinline-block-t---unit), [_postDelayedLet_](https://github.com/dewarder/Android-Kotlin-Commons/wiki/View#inline-fun--tpostletcrossinline-block-t---unit)
 
-### Shared preferences
+### [Shared preferences](https://github.com/dewarder/Android-Kotlin-Commons/wiki/Shared-preferences)
 
 ##### Delegates
 
@@ -177,7 +177,7 @@ sharedPreferences.save(CURRENT_USER_ID, userId)
 sharedPreferences.save(BEARER_TOKEN, token, force = true)
 ```
 
-### Context
+### [Context](https://github.com/dewarder/Android-Kotlin-Commons/wiki/Context)
 
 ##### Compat
 Before
@@ -272,7 +272,7 @@ override fun onCreate(savedInstanceState: Bundle) {
 }
 ```
 
-### SQLiteDatabase
+### [SQLiteDatabase](https://github.com/dewarder/Android-Kotlin-Commons/wiki/SQLiteDatabase)
 
 ##### Queries
 
