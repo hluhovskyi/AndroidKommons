@@ -1,5 +1,7 @@
 # Android-Kotlin-Commons
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AndroidKotlinCommons-blue.svg?style=flat)](https://android-arsenal.com/details/1/5343)
+
 Small library that contains common extensions for Android. Aims:
 - Provide the shortest way to do things
 - Reduce count of "Compat" and "Utils" classes
