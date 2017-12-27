@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.dewarder.katanatest">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!--View-->
+        <activity android:name="com.dewarder.katanatest.TestActivity"/>
+        <activity android:name="com.dewarder.katanatest.view.TestViewActivity"/>
+        <activity android:name="com.dewarder.katanatest.view.ViewViewTest$Activity"/>
+        <activity android:name="com.dewarder.katanatest.view.FragmentViewTest$Activity"/>
+        <activity android:name="com.dewarder.katanatest.view.DialogViewTest$Activity"/>
+        <activity android:name="com.dewarder.katanatest.view.SupportFragmentViewTest$Activity"/>
+        <activity android:name="com.dewarder.katanatest.view.ViewFinderProviderViewTest$Activity"/>
+
+        <!--Dimen-->
+        <activity android:name="com.dewarder.katanatest.dimen.TestDimenActivity"/>
+        <activity android:name="com.dewarder.katanatest.dimen.ViewDimenTest$Activity"/>
+        <activity android:name="com.dewarder.katanatest.dimen.FragmentDimenTest$Activity"/>
+        <activity android:name="com.dewarder.katanatest.dimen.SupportFragmentDimenTest$Activity"/>
+        <activity android:name="com.dewarder.katanatest.dimen.DialogDimenTest$Activity"/>
+        <activity android:name="com.dewarder.katanatest.dimen.ContextProviderDimenTest$Activity"/>
+
+        <!--Integer-->
+        <activity android:name=".integer.TestIntegerActivity"/>
+        <activity android:name=".integer.ViewIntegerTest$Activity"/>
+        <activity android:name=".integer.FragmentIntegerTest$Activity"/>
+        <activity android:name=".integer.SupportFragmentIntegerTest$Activity"/>
+        <activity android:name=".integer.DialogIntegerTest$Activity"/>
+        <activity android:name=".integer.ContextProviderIntegerTest$Activity"/>
+
+        <!--String-->
+        <activity android:name=".string.TestStringActivity"/>
+        <activity android:name=".string.ViewStringTest$Activity"/>
+        <activity android:name=".string.FragmentStringTest$Activity"/>
+        <activity android:name=".string.SupportFragmentStringTest$Activity"/>
+        <activity android:name=".string.DialogStringTest$Activity"/>
+        <activity android:name=".string.ContextProviderStringTest$Activity"/>
+    </application>
+
+</manifest>

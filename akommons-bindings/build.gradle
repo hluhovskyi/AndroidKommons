@@ -8,13 +8,6 @@ buildscript {
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
-ext {
-    artifactVersion = '0.0.4'
-    artifactName = 'akommons'
-    siteUrl = 'https://github.com/dewarder/Android-Kotlin-Commons'
-    gitUrl = 'https://github.com/dewarder/Android-Kotlin-Commons.git'
-}
-
 android {
     compileSdkVersion sdk_version
 
@@ -22,15 +15,9 @@ android {
         minSdkVersion min_sdk_version
         targetSdkVersion sdk_version
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
-    }
 }
 
 dependencies {
+    compile 'com.android.support:appcompat-v7:25.3.1'
     api dep.kotlinStdlib
-    api dep.supportAppcompat
 }

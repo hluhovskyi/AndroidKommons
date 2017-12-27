@@ -1,0 +1,5 @@
+<resources>
+
+    <integer name="test_integer_1">1</integer>
+    <integer name="test_integer_2">2</integer>
+</resources>

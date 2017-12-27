@@ -1,0 +1,10 @@
+<resources>
+
+    <dimen name="test_dimen_4px">4px</dimen>
+    <dimen name="test_dimen_8px">8px</dimen>
+    <dimen name="test_dimen_4dp">4dp</dimen>
+    <dimen name="test_dimen_8dp">8dp</dimen>
+    <dimen name="test_dimen_4sp">4sp</dimen>
+    <dimen name="test_dimen_8sp">8sp</dimen>
+
+</resources>

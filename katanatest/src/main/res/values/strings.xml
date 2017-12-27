@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Katana</string>
+
+    <string name="test_string1">test1</string>
+    <string name="test_string2">test2</string>
+</resources>

@@ -1,1 +1,3 @@
 include ':akommons'
+include ':akommons-bindings'
+include ':katanatest'

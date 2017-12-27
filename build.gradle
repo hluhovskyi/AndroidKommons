@@ -1,16 +1,14 @@
-buildscript {
-    ext.kotlin_version = '1.0.6'
+subprojects {
+    buildscript {
+        repositories {
+            jcenter()
+            google()
+        }
+    }
     repositories {
         jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+        google()
     }
 }
 
-repositories {
-    mavenCentral()
-}
+apply from: rootProject.file("gradle/dependencies.gradle")
