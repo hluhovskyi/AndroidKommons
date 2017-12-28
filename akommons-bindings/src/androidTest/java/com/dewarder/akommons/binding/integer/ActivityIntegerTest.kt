@@ -1,6 +1,7 @@
 package com.dewarder.akommons.binding.integer
 
 import android.support.test.rule.ActivityTestRule
+import com.dewarder.akommons.binding.common.integer.BaseIntegerTest
 import org.junit.Rule
 
 class ActivityIntegerTest : BaseIntegerTest() {

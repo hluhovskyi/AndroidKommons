@@ -1,8 +1,7 @@
 package com.dewarder.akommons.binding.string
 
 import android.support.test.rule.ActivityTestRule
-import com.dewarder.akommons.binding.integer.BaseIntegerTest
-import com.dewarder.akommons.binding.integer.TestIntegerActivity
+import com.dewarder.akommons.binding.common.string.BaseStringTest
 import org.junit.Rule
 
 class ActivityStringTest : BaseStringTest() {

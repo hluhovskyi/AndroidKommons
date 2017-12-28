@@ -2,9 +2,10 @@ package com.dewarder.akommons.binding.string
 
 import android.content.Context
 import com.dewarder.akommons.binding.*
-import com.dewarder.akommons.binding.*
-import com.dewarder.akommons.test.R
-import com.dewarder.akommons.binding.integer.TestableInteger
+import com.dewarder.akommons.binding.common.NO_STRING1
+import com.dewarder.akommons.binding.common.NO_STRING2
+import com.dewarder.akommons.binding.common.string.TestableString
+import com.dewarder.akommons.binding.common.R
 
 class TestStringContextProvider(private val context: Context) : ContextProvider, TestableString {
 

@@ -1,11 +1,11 @@
 package com.dewarder.akommons.binding.integer
 
 import android.content.Context
-import android.view.View
 import com.dewarder.akommons.binding.*
-import com.dewarder.akommons.binding.NO_INTEGER1
-import com.dewarder.akommons.binding.NO_INTEGER2
-import com.dewarder.akommons.test.R
+import com.dewarder.akommons.binding.common.NO_INTEGER1
+import com.dewarder.akommons.binding.common.NO_INTEGER2
+import com.dewarder.akommons.binding.common.integer.TestableInteger
+import com.dewarder.akommons.binding.common.R
 
 class TestIntegerContextProvider(private val context: Context) : ContextProvider, TestableInteger {
 

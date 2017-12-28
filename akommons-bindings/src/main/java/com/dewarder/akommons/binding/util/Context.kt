@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.dewarder.akommons.util
+package com.dewarder.akommons.binding.util
 
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.support.annotation.*
-import android.support.v4.content.ContextCompat
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.dewarder.akommons.binding.DimensionType
@@ -38,9 +38,9 @@ fun Context.safeString(@StringRes stringRes: Int): String? {
 /**
  * Drawable
  */
-fun Context.getThemedDrawable(@DrawableRes drawableRes: Int): Drawable {
-    return ContextCompat.getDrawable(this, drawableRes)
-}
+fun Context.getThemedDrawable(@DrawableRes drawableRes: Int): Drawable =
+        if (Build.VERSION.SDK_INT >= 23) getDrawable(drawableRes)
+        else resources.getDrawable(drawableRes)
 
 fun Context.getSafeThemedDrawable(@DrawableRes drawableRes: Int): Drawable? {
     return safe { getThemedDrawable(drawableRes) }
@@ -63,9 +63,9 @@ fun Context.getSafeAnimation(@AnimRes animationRes: Int): Animation? {
  * Color
  */
 @ColorInt
-fun Context.getThemedColor(@ColorRes colorRes: Int): Int {
-    return ContextCompat.getColor(this, colorRes)
-}
+fun Context.getThemedColor(@ColorRes colorRes: Int): Int =
+        if (Build.VERSION.SDK_INT >= 23) getColor(colorRes)
+        else resources.getColor(colorRes)
 
 @ColorInt
 fun Context.getSafeThemedColor(@ColorRes colorRes: Int): Int? {

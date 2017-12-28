@@ -20,10 +20,9 @@ import android.os.Bundle
 import android.support.test.rule.ActivityTestRule
 import android.support.v7.app.AppCompatActivity
 import android.widget.FrameLayout
-import com.dewarder.akommons.test.R
-import com.dewarder.akommons.binding.view.BaseViewTest
-import com.dewarder.akommons.binding.view.TestViewFragment
-import com.dewarder.akommons.binding.view.TestableView
+import com.dewarder.akommons.binding.common.view.BaseViewTest
+import com.dewarder.akommons.binding.common.view.TestableView
+import com.dewarder.akommons.binding.common.R
 import org.junit.Rule
 
 class FragmentViewTest : BaseViewTest() {

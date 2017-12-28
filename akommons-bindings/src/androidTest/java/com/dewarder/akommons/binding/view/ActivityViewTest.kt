@@ -17,9 +17,8 @@
 package com.dewarder.akommons.binding.view
 
 import android.support.test.rule.ActivityTestRule
-import com.dewarder.akommons.binding.view.BaseViewTest
-import com.dewarder.akommons.binding.view.TestViewActivity
-import com.dewarder.akommons.binding.view.TestableView
+import com.dewarder.akommons.binding.common.view.BaseViewTest
+import com.dewarder.akommons.binding.common.view.TestableView
 import org.junit.Rule
 
 class ActivityViewTest : BaseViewTest() {

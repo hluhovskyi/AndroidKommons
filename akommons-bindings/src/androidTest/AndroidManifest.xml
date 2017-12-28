@@ -4,11 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.Light">
 
         <!--View-->
         <activity android:name=".TestActivity"/>
@@ -16,14 +14,12 @@
         <activity android:name=".view.ViewViewTest$Activity"/>
         <activity android:name=".view.FragmentViewTest$Activity"/>
         <activity android:name=".view.DialogViewTest$Activity"/>
-        <activity android:name=".view.SupportFragmentViewTest$Activity"/>
         <activity android:name=".view.ViewFinderProviderViewTest$Activity"/>
 
         <!--Dimen-->
         <activity android:name=".dimen.TestDimenActivity"/>
         <activity android:name=".dimen.ViewDimenTest$Activity"/>
         <activity android:name=".dimen.FragmentDimenTest$Activity"/>
-        <activity android:name=".dimen.SupportFragmentDimenTest$Activity"/>
         <activity android:name=".dimen.DialogDimenTest$Activity"/>
         <activity android:name=".dimen.ContextProviderDimenTest$Activity"/>
 
@@ -31,7 +27,6 @@
         <activity android:name=".integer.TestIntegerActivity"/>
         <activity android:name=".integer.ViewIntegerTest$Activity"/>
         <activity android:name=".integer.FragmentIntegerTest$Activity"/>
-        <activity android:name=".integer.SupportFragmentIntegerTest$Activity"/>
         <activity android:name=".integer.DialogIntegerTest$Activity"/>
         <activity android:name=".integer.ContextProviderIntegerTest$Activity"/>
 
@@ -39,7 +34,6 @@
         <activity android:name=".string.TestStringActivity"/>
         <activity android:name=".string.ViewStringTest$Activity"/>
         <activity android:name=".string.FragmentStringTest$Activity"/>
-        <activity android:name=".string.SupportFragmentStringTest$Activity"/>
         <activity android:name=".string.DialogStringTest$Activity"/>
         <activity android:name=".string.ContextProviderStringTest$Activity"/>
     </application>

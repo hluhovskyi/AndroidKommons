@@ -21,14 +21,14 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.dewarder.akommons.binding.common.NO_VIEW1
+import com.dewarder.akommons.binding.common.NO_VIEW2
+import com.dewarder.akommons.binding.common.view.TestableView
 import com.dewarder.akommons.binding.view
 import com.dewarder.akommons.binding.viewOptional
 import com.dewarder.akommons.binding.views
 import com.dewarder.akommons.binding.viewsOptional
-import com.dewarder.akommons.binding.NO_VIEW1
-import com.dewarder.akommons.binding.NO_VIEW2
-import com.dewarder.akommons.test.R
-import com.dewarder.akommons.binding.view.TestableView
+import com.dewarder.akommons.binding.common.R
 
 class TestViewActivity : AppCompatActivity(), TestableView {
 

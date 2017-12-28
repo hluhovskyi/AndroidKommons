@@ -6,11 +6,12 @@ import com.dewarder.akommons.binding.integer
 import com.dewarder.akommons.binding.integerOptional
 import com.dewarder.akommons.binding.integers
 import com.dewarder.akommons.binding.integersOptional
-import com.dewarder.akommons.binding.NO_INTEGER1
-import com.dewarder.akommons.binding.NO_INTEGER2
-import com.dewarder.akommons.test.R
+import com.dewarder.akommons.binding.common.NO_INTEGER1
+import com.dewarder.akommons.binding.common.NO_INTEGER2
+import com.dewarder.akommons.binding.common.integer.TestableInteger
+import com.dewarder.akommons.binding.common.R
 
-class TestIntegerDialog : Dialog, TestableInteger {
+class TestIntegerDialog(context: Context) : Dialog(context), TestableInteger {
 
     override val integerRequiredExist by integer(R.integer.test_integer_1)
     override val integerRequiredAbsent by integer(NO_INTEGER1)
@@ -23,6 +24,4 @@ class TestIntegerDialog : Dialog, TestableInteger {
     override val integersOptionalAbsent by integersOptional(NO_INTEGER1, NO_INTEGER2)
     override val integersRequiredFirstExistSecondAbsent by integers(R.integer.test_integer_1, NO_INTEGER1)
     override val integersOptionalFirstExistSecondAbsent by integersOptional(R.integer.test_integer_1, NO_INTEGER1)
-
-    constructor(context: Context) : super(context)
 }

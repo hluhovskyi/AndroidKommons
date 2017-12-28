@@ -20,10 +20,8 @@ android {
 }
 
 dependencies {
-    implementation dep.supportAppcompat
     api dep.kotlinStdlib
+    api dep.supportAnnotations
 
-    testCompile dep.junit
-    androidTestImplementation dep.espresso
-    androidTestCompile dep.kotlinReflect
+    androidTestApi project(":akommons-bindings-common-test")
 }

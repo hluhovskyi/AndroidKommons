@@ -1,0 +1,29 @@
+buildscript {
+    dependencies {
+        classpath dep.androidPlugin
+        classpath dep.kotlinPlugin
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion sdk_version
+
+    defaultConfig {
+        minSdkVersion min_sdk_version
+        targetSdkVersion sdk_version
+
+        testInstrumentationRunner dep.androidRunner
+    }
+}
+
+dependencies {
+    api dep.kotlinStdlib
+    api dep.supportAnnotations
+    api dep.junit
+    api dep.supportAppcompat
+    api dep.espresso
+    api dep.kotlinReflect
+}

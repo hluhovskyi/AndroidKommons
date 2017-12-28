@@ -20,9 +20,10 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.dewarder.akommons.binding.*
-import com.dewarder.akommons.binding.NO_VIEW1
-import com.dewarder.akommons.binding.NO_VIEW2
-import com.dewarder.akommons.test.R
+import com.dewarder.akommons.binding.common.NO_VIEW1
+import com.dewarder.akommons.binding.common.NO_VIEW2
+import com.dewarder.akommons.binding.common.view.TestableView
+import com.dewarder.akommons.binding.common.R
 
 class TestViewViewFinderProvider(val view: View) : ViewFinderProvider, TestableView {
 

@@ -18,6 +18,8 @@ package com.dewarder.akommons.binding.view
 
 import android.support.test.rule.ActivityTestRule
 import com.dewarder.akommons.binding.TestActivity
+import com.dewarder.akommons.binding.common.view.BaseViewTest
+import com.dewarder.akommons.binding.common.view.TestableView
 import org.junit.Rule
 
 class DialogViewTest : BaseViewTest() {

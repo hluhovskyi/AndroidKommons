@@ -3,9 +3,10 @@ package com.dewarder.akommons.binding.dimen
 import android.content.Context
 import android.view.View
 import com.dewarder.akommons.binding.*
-import com.dewarder.akommons.binding.NO_DIMEN1
-import com.dewarder.akommons.binding.NO_DIMEN2
-import com.dewarder.akommons.test.R
+import com.dewarder.akommons.binding.common.NO_DIMEN1
+import com.dewarder.akommons.binding.common.NO_DIMEN2
+import com.dewarder.akommons.binding.common.dimen.TestableDimen
+import com.dewarder.akommons.binding.common.R
 
 class TestDimenView : View, TestableDimen {
 

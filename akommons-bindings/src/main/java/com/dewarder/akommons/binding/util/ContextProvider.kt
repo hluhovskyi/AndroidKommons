@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.dewarder.akommons.util
+package com.dewarder.akommons.binding.util
 
 import android.app.Activity
 import android.app.Dialog
 import android.app.Fragment
 import android.content.Context
-import android.support.v4.app.Fragment as SupportFragment
 
 /**
  * Native
@@ -35,10 +34,4 @@ internal val Fragment.contextProvider: () -> Context
     inline get() = this::getContext
 
 internal val Dialog.contextProvider: () -> Context
-    inline get() = this::getContext
-
-/**
- * Support
- */
-internal val SupportFragment.contextProvider: () -> Context
     inline get() = this::getContext

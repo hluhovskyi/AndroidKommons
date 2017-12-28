@@ -3,11 +3,12 @@ package com.dewarder.akommons.binding.dimen
 import android.app.Dialog
 import android.content.Context
 import com.dewarder.akommons.binding.*
-import com.dewarder.akommons.binding.NO_DIMEN1
-import com.dewarder.akommons.binding.NO_DIMEN2
-import com.dewarder.akommons.test.R
+import com.dewarder.akommons.binding.common.NO_DIMEN1
+import com.dewarder.akommons.binding.common.NO_DIMEN2
+import com.dewarder.akommons.binding.common.dimen.TestableDimen
+import com.dewarder.akommons.binding.common.R
 
-class TestDimenDialog : Dialog, TestableDimen {
+class TestDimenDialog(context: Context) : Dialog(context), TestableDimen {
 
     override val dimenRequiredExist by dimen(R.dimen.test_dimen_8dp)
     override val dimenRequiredAbsent by dimen(NO_DIMEN1)
@@ -32,6 +33,4 @@ class TestDimenDialog : Dialog, TestableDimen {
     override val dimensOptionalExistPxDpSpAllPx by dimensOptional(R.dimen.test_dimen_8px, R.dimen.test_dimen_8dp, R.dimen.test_dimen_8sp)
     override val dimensRequiredExistPxDpSpAllDp by dimens(R.dimen.test_dimen_8px, R.dimen.test_dimen_8dp, R.dimen.test_dimen_8sp, dimension = DimensionType.DP)
     override val dimensOptionalExistPxDpSpAllDp by dimens(R.dimen.test_dimen_8px, R.dimen.test_dimen_8dp, R.dimen.test_dimen_8sp, dimension = DimensionType.DP)
-
-    constructor(context: Context) : super(context)
 }

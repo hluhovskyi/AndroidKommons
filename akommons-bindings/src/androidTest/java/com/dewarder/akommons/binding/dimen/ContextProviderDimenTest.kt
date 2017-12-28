@@ -3,6 +3,8 @@ package com.dewarder.akommons.binding.dimen
 import android.content.res.Resources
 import android.support.test.rule.ActivityTestRule
 import com.dewarder.akommons.binding.TestActivity
+import com.dewarder.akommons.binding.common.dimen.BaseDimenTest
+import com.dewarder.akommons.binding.common.dimen.TestableDimen
 import org.junit.Rule
 
 class ContextProviderDimenTest : BaseDimenTest() {

@@ -5,9 +5,10 @@ import com.dewarder.akommons.binding.string
 import com.dewarder.akommons.binding.stringOptional
 import com.dewarder.akommons.binding.strings
 import com.dewarder.akommons.binding.stringsOptional
-import com.dewarder.akommons.binding.NO_STRING1
-import com.dewarder.akommons.binding.NO_STRING2
-import com.dewarder.akommons.test.R
+import com.dewarder.akommons.binding.common.NO_STRING1
+import com.dewarder.akommons.binding.common.NO_STRING2
+import com.dewarder.akommons.binding.common.string.TestableString
+import com.dewarder.akommons.binding.common.R
 
 class TestStringFragment : Fragment(), TestableString {
 

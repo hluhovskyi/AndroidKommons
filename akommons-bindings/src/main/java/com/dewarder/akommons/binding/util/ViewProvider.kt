@@ -16,7 +16,7 @@
 
 @file:Suppress("UNCHECKED_CAST")
 
-package com.dewarder.akommons.util
+package com.dewarder.akommons.binding.util
 
 import android.app.Activity
 import android.app.Dialog
@@ -24,34 +24,26 @@ import android.app.Fragment
 import android.view.View
 import com.dewarder.akommons.binding.ViewFinder
 import com.dewarder.akommons.binding.ViewFinderProvider
-import com.dewarder.akommons.binding.util.ensureFragmentView
 import kotlin.reflect.KProperty
-import android.support.v4.app.Fragment as SupportFragment
 
 /**
  * Native
  */
 internal fun <V : View> View.viewProvider(property: KProperty<*>): ViewFinder<V>
-    = { findViewById(it) as V? }
+        = this::findViewById
 
 internal fun <V : View> Activity.viewProvider(property: KProperty<*>): ViewFinder<V>
-    = { findViewById(it) as V? }
+        = this::findViewById
 
 internal fun <V : View> Fragment.viewProvider(property: KProperty<*>): ViewFinder<V>
-    = { ensureFragmentView(this, property).findViewById(it) as V? }
+        = { ensureFragmentView(this, property).findViewById(it) as V? }
 
 internal fun <V : View> Dialog.viewProvider(property: KProperty<*>): ViewFinder<V>
-    = { findViewById(it) as V? }
+        = this::findViewById
 
-
-/**
- * Support
- */
-internal fun <V : View> SupportFragment.viewProvider(property: KProperty<*>): ViewFinder<V>
-    = { ensureFragmentView(this, property).findViewById(it) as V? }
 
 /**
  * ViewFinderProvider
  */
 internal fun <V : View> ViewFinderProvider.genericViewFinder(property: KProperty<*>): ViewFinder<V>
-    = { provideViewFinder().invoke(it) as V? }
+        = { provideViewFinder().invoke(it) as V? }

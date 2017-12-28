@@ -5,9 +5,10 @@ import com.dewarder.akommons.binding.integer
 import com.dewarder.akommons.binding.integerOptional
 import com.dewarder.akommons.binding.integers
 import com.dewarder.akommons.binding.integersOptional
-import com.dewarder.akommons.binding.NO_INTEGER1
-import com.dewarder.akommons.binding.NO_INTEGER2
-import com.dewarder.akommons.test.R
+import com.dewarder.akommons.binding.common.NO_INTEGER1
+import com.dewarder.akommons.binding.common.NO_INTEGER2
+import com.dewarder.akommons.binding.common.integer.TestableInteger
+import com.dewarder.akommons.binding.common.R
 
 class TestIntegerActivity : AppCompatActivity(), TestableInteger {
 
