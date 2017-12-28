@@ -14,10 +14,16 @@ android {
     defaultConfig {
         minSdkVersion min_sdk_version
         targetSdkVersion sdk_version
+
+        testInstrumentationRunner dep.androidRunner
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    implementation dep.supportAppcompat
     api dep.kotlinStdlib
+
+    testCompile dep.junit
+    androidTestImplementation dep.espresso
+    androidTestCompile dep.kotlinReflect
 }

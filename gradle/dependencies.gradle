@@ -7,6 +7,12 @@ ext {
             androidPlugin   : "com.android.tools.build:gradle:3.0.1",
             kotlinPlugin    : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version",
             kotlinStdlib    : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            supportAppcompat: "com.android.support:appcompat-v7:26.0.2"
+            kotlinReflect   : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
+            supportAppcompat: "com.android.support:appcompat-v7:26.0.2",
+
+            //testing
+            junit           : 'junit:junit:4.12',
+            espresso        : 'com.android.support.test.espresso:espresso-core:2.2.2',
+            androidRunner   : "android.support.test.runner.AndroidJUnitRunner"
     ]
 }
