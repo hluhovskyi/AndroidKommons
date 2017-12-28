@@ -43,5 +43,6 @@ enum class Api(val sdkCode: Int) {
     LOLLIPOP_MR1(22),
     M(23),
     N(24),
-    N_MR1(25)
+    N_MR1(25),
+    O(26)
 }

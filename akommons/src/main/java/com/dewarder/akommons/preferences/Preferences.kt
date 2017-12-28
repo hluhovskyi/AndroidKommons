@@ -19,9 +19,7 @@
 
 package com.dewarder.akommons.preferences
 
-import android.annotation.TargetApi
 import android.content.SharedPreferences
-import android.os.Build
 
 fun SharedPreferences.save(key: String, value: String, force: Boolean = false) {
     val editor = edit().putString(key, value)
@@ -48,7 +46,6 @@ fun SharedPreferences.save(key: String, value: Float, force: Boolean = false) {
     if (force) editor.commit() else editor.apply()
 }
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 fun SharedPreferences.save(key: String, value: Set<String>, force: Boolean = false) {
     val editor = edit().putStringSet(key, value)
     if (force) editor.commit() else editor.apply()

@@ -20,15 +20,10 @@ package com.dewarder.akommons.preferences
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-class FloatPreferencesProperty : ReadWriteProperty<SharedPreferencesProvider, Float> {
-
-    val defaultValue: Float
-    val key: String?
-
-    constructor(defaultValue: Float, key: String?) {
-        this.defaultValue = defaultValue
-        this.key = key
-    }
+class FloatPreferencesProperty(
+        val defaultValue: Float,
+        val key: String?
+) : ReadWriteProperty<SharedPreferencesProvider, Float> {
 
     override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): Float {
         val key = key ?: property.name

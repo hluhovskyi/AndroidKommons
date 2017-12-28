@@ -15,33 +15,23 @@
  *
  */
 
-@file:JvmName("SupportFragmentUtils")
+@file:[JvmName("SupportFragmentUtils") Suppress("unused")]
 
 package com.dewarder.akommons
 
 import android.app.Activity
 import android.app.Service
 import android.content.Intent
-import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
-import android.view.View
-
-/**
- * Methods
- */
-@Suppress("unchecked_cast")
-fun <V : View> Fragment.getViewById(@IdRes id: Int): V {
-    return view?.findViewById(id) as V
-}
 
 
 /**
  * Intents
  */
 inline fun <reified T : Any> Fragment.intentFor(action: String? = null,
-                                               flags: Int = -1,
-                                               noinline initializer: (Intent.() -> Unit)? = null): Intent {
+                                                flags: Int = -1,
+                                                noinline initializer: (Intent.() -> Unit)? = null): Intent {
 
     return context.intentFor<T>(action, flags, initializer)
 }
@@ -85,5 +75,5 @@ fun Fragment.isPermissionsGranted(vararg permissions: String): Boolean {
 }
 
 fun Fragment.requestPermissions(requestCode: Int, vararg permissions: Permission) {
-    requestPermissions(permissions.map { it.value }.toTypedArray(), requestCode)
+    requestPermissions(permissions.map(Permission::value).toTypedArray(), requestCode)
 }

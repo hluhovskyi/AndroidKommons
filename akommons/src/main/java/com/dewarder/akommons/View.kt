@@ -23,7 +23,7 @@ import android.support.annotation.IdRes
 import android.view.View
 
 /**
- * Variables
+ * Properties
  */
 var View.isVisible: Boolean
     get() = visibility == View.VISIBLE
@@ -35,9 +35,8 @@ var View.isVisible: Boolean
  * Methods
  */
 @Suppress("unchecked_cast")
-fun <V : View> View.getViewById(@IdRes id: Int): V {
-    return findViewById(id) as V
-}
+@Deprecated("Use findViewById instead", ReplaceWith("findViewById(id)"))
+fun <V : View> View.getViewById(@IdRes id: Int): V = findViewById(id)
 
 fun View.setAllPadding(padding: Int) {
     setPadding(padding, padding, padding, padding)

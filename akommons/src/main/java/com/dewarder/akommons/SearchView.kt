@@ -19,25 +19,17 @@
 
 package com.dewarder.akommons
 
-import android.annotation.TargetApi
-import android.os.Build
 import android.widget.SearchView
 import com.dewarder.akommons.adapters.SimpleSearchQueryListener
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 fun SearchView.addOnQueryChangeListener(block: (String) -> Boolean) {
     setOnQueryTextListener(object : SimpleSearchQueryListener() {
-        override fun onQueryTextChange(newText: String): Boolean {
-            return block(newText)
-        }
+        override fun onQueryTextChange(newText: String): Boolean = block(newText)
     })
 }
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 fun SearchView.addOnQuerySubmitListener(block: (String) -> Boolean) {
     setOnQueryTextListener(object : SimpleSearchQueryListener() {
-        override fun onQueryTextSubmit(query: String): Boolean {
-            return block(query)
-        }
+        override fun onQueryTextSubmit(query: String): Boolean = block(query)
     })
 }

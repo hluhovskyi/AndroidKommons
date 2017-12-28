@@ -34,7 +34,7 @@ fun TextView.addOnAfterTextChangedListener(listener: (Editable) -> Unit): TextWa
     return textWatcher
 }
 
-fun TextView.addOnBeforeTextChangedListener(listener: (CharSequence, Int, Int, Int) -> Unit): TextWatcher {
+fun TextView.addOnBeforeTextChangedListener(listener: (s: CharSequence, start: Int, count: Int, after: Int) -> Unit): TextWatcher {
     val textWatcher = object : SimpleTextWatcher() {
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             listener(s, start, count, after)
@@ -44,7 +44,7 @@ fun TextView.addOnBeforeTextChangedListener(listener: (CharSequence, Int, Int, I
     return textWatcher
 }
 
-fun TextView.addOnTextChangedListener(listener: (CharSequence, Int, Int, Int) -> Unit): TextWatcher {
+fun TextView.addOnTextChangedListener(listener: (s: CharSequence, start: Int, before: Int, count: Int) -> Unit): TextWatcher {
     val textWatcher = object : SimpleTextWatcher() {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
             listener(s, start, before, count)

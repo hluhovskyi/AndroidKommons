@@ -22,26 +22,20 @@ package com.dewarder.akommons
 import android.widget.SeekBar
 import com.dewarder.akommons.adapters.SimpleSeekBarChangeListener
 
-fun SeekBar.setOnProgressChangedListener(listener: (Int, Boolean) -> Unit) {
+fun SeekBar.setOnProgressChangedListener(listener: (progress: Int, fromUser: Boolean) -> Unit) {
     setOnSeekBarChangeListener(object : SimpleSeekBarChangeListener() {
-        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-            listener(progress, fromUser)
-        }
+        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) = listener(progress, fromUser)
     })
 }
 
 fun SeekBar.setOnStartTrackingTouch(listener: () -> Unit) {
     setOnSeekBarChangeListener(object : SimpleSeekBarChangeListener() {
-        override fun onStartTrackingTouch(seekBar: SeekBar) {
-            listener()
-        }
+        override fun onStartTrackingTouch(seekBar: SeekBar) = listener()
     })
 }
 
 fun SeekBar.setOnStopTrackingTouch(listener: () -> Unit) {
     setOnSeekBarChangeListener(object : SimpleSeekBarChangeListener() {
-        override fun onStopTrackingTouch(seekBar: SeekBar) {
-            listener()
-        }
+        override fun onStopTrackingTouch(seekBar: SeekBar) = listener()
     })
 }

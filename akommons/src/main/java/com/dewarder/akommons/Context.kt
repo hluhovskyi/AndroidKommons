@@ -15,14 +15,14 @@
  *
  */
 
-@file:JvmName("ContextUtils")
+@file:[JvmName("ContextUtils") Suppress("unused")]
 
 package com.dewarder.akommons
 
+import android.Manifest
 import android.accounts.AccountManager
 import android.animation.Animator
 import android.animation.AnimatorInflater
-import android.annotation.TargetApi
 import android.app.*
 import android.app.admin.DevicePolicyManager
 import android.app.job.JobScheduler
@@ -79,15 +79,14 @@ inline fun <reified T : Any> Context.intentFor(action: String? = null,
                                                noinline init: (Intent.() -> Unit)? = null): Intent {
 
     val intent = Intent(this, T::class.java)
+    action?.let(intent::setAction)
     if (action != null) {
         intent.action = action
     }
     if (flags != -1) {
         intent.flags = flags
     }
-    if (init != null) {
-        init(intent)
-    }
+    init?.invoke(intent)
     return intent
 }
 
@@ -165,24 +164,30 @@ val Context.activityManager: ActivityManager
 val Context.alarmManager: AlarmManager
     get() = getService(Context.ALARM_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 val Context.appWidgetManager: AppWidgetManager
     get() = getService(Context.APPWIDGET_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.KITKAT)
 val Context.appOpsManager: AppOpsManager
     get() = getService(Context.APP_OPS_SERVICE)
 
 val Context.audioManager: AudioManager
     get() = getService(Context.AUDIO_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 val Context.batteryManager: BatteryManager
     get() = getService(Context.BATTERY_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 val Context.bluetoothManager: BluetoothManager
     get() = getService(Context.BLUETOOTH_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 val Context.cameraManager: CameraManager
     get() = getService(Context.CAMERA_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.KITKAT)
 val Context.captioningManager: CaptioningManager
     get() = getService(Context.CAPTIONING_SERVICE)
 
@@ -192,12 +197,14 @@ val Context.clipboardManager: ClipboardManager
 val Context.connectivityManager: ConnectivityManager
     get() = getService(Context.CONNECTIVITY_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.KITKAT)
 val Context.consumerIrManager: ConsumerIrManager
     get() = getService(Context.CONSUMER_IR_SERVICE)
 
 val Context.devicePolicyManager: DevicePolicyManager
     get() = getService(Context.DEVICE_POLICY_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 val Context.displayManager: DisplayManager
     get() = getService(Context.DISPLAY_SERVICE)
 
@@ -210,15 +217,18 @@ val Context.dropBoxManager: DropBoxManager
 val Context.inputMethodManager: InputMethodManager
     get() = getService(Context.INPUT_METHOD_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
 val Context.inputManager: InputManager
     get() = getService(Context.INPUT_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 val Context.jobScheduler: JobScheduler
     get() = getService(Context.JOB_SCHEDULER_SERVICE)
 
 val Context.keyguardManager: KeyguardManager
     get() = getService(Context.KEYGUARD_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 val Context.launcherApps: LauncherApps
     get() = getService(Context.LAUNCHER_APPS_SERVICE)
 
@@ -228,12 +238,15 @@ val Context.layoutInflater: LayoutInflater
 val Context.locationManager: LocationManager
     get() = getService(Context.LOCATION_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 val Context.mediaProjectionManager: MediaProjectionManager
     get() = getService(Context.MEDIA_PROJECTION_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
 val Context.mediaRouter: MediaRouter
     get() = getService(Context.MEDIA_ROUTER_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 val Context.mediaSessionManager: MediaSessionManager
     get() = getService(Context.MEDIA_SESSION_SERVICE)
 
@@ -243,15 +256,18 @@ val Context.nfcManager: NfcManager
 val Context.notificationManager: NotificationManager
     get() = getService(Context.NOTIFICATION_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
 val Context.nsdManager: NsdManager
     get() = getService(Context.NSD_SERVICE)
 
 val Context.powerManager: PowerManager
     get() = getService(Context.POWER_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.KITKAT)
 val Context.printManager: PrintManager
     get() = getService(Context.PRINT_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 val Context.restrictionsManager: RestrictionsManager
     get() = getService(Context.RESTRICTIONS_SERVICE)
 
@@ -264,6 +280,7 @@ val Context.sensorManager: SensorManager
 val Context.storageManager: StorageManager
     get() = getService(Context.STORAGE_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 val Context.telecomManager: TelecomManager
     get() = getService(Context.TELECOM_SERVICE)
 
@@ -273,6 +290,7 @@ val Context.telephonyManager: TelephonyManager
 val Context.textServicesManager: TextServicesManager
     get() = getService(Context.TEXT_SERVICES_MANAGER_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 val Context.tvInputManager: TvInputManager
     get() = getService(Context.TV_INPUT_SERVICE)
 
@@ -282,6 +300,7 @@ val Context.uiModeManager: UiModeManager
 val Context.usbManager: UsbManager
     get() = getService(Context.USB_SERVICE)
 
+@get:RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 val Context.userManager: UserManager
     get() = getService(Context.USER_SERVICE)
 
@@ -329,7 +348,6 @@ fun Context.getAnimation(@AnimRes id: Int): Animation {
     return AnimationUtils.loadAnimation(this, id)
 }
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 fun Context.getAnimator(@AnimatorRes id: Int): Animator {
     return AnimatorInflater.loadAnimator(this, id)
 }
@@ -368,10 +386,18 @@ fun Context.isPermissionsGranted(vararg permissions: String): Boolean {
  * Other
  */
 val Context.isRtl: Boolean
-    get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+    get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+    } else {
+        false
+    }
 
 val Context.isLtr: Boolean
-    get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_LTR
+    get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_LTR
+    } else {
+        true
+    }
 
 val Context.isLandscape: Boolean
     get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
@@ -397,11 +423,14 @@ fun Context.isPackageInstalled(packageName: String): Boolean = try {
 /**
  * Connections
  */
+@get:RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
 val Context.hasConnection: Boolean
     get() = connectivityManager.activeNetworkInfo?.isConnectedOrConnecting ?: false
 
+@get:RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
 val Context.isConnectedToWifi: Boolean
     get() = connectivityManager.activeNetworkInfo?.type == ConnectivityManager.TYPE_WIFI
 
+@get:RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
 val Context.isConnectedToMobile: Boolean
     get() = connectivityManager.activeNetworkInfo?.type == ConnectivityManager.TYPE_MOBILE

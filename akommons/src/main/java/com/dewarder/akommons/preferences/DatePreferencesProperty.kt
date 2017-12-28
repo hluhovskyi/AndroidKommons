@@ -21,15 +21,10 @@ import java.util.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-open class DatePreferencesProperty : ReadWriteProperty<SharedPreferencesProvider, Date> {
-
-    val defaultValue: Long
-    val key: String?
-
-    constructor(defaultValue: Long, key: String?) {
-        this.defaultValue = defaultValue
-        this.key = key
-    }
+open class DatePreferencesProperty(
+        val defaultValue: Long,
+        val key: String?
+) : ReadWriteProperty<SharedPreferencesProvider, Date> {
 
     override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): Date {
         val key = key ?: property.name

@@ -20,15 +20,10 @@ package com.dewarder.akommons.preferences
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-class BooleanPreferencesProperty : ReadWriteProperty<SharedPreferencesProvider, Boolean> {
-
-    val defaultValue: Boolean
-    val key: String?
-
-    constructor(defaultValue: Boolean, key: String?) {
-        this.defaultValue = defaultValue
-        this.key = key
-    }
+class BooleanPreferencesProperty(
+        val defaultValue: Boolean,
+        val key: String?
+) : ReadWriteProperty<SharedPreferencesProvider, Boolean> {
 
     override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): Boolean {
         val key = key ?: property.name

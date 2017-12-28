@@ -20,11 +20,9 @@
 package com.dewarder.akommons
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.support.annotation.IdRes
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -35,19 +33,18 @@ import android.widget.EditText
 val Activity.rootView: View
     get() = findViewById(android.R.id.content)
 
-/**
- * Methods
- */
-@Suppress("unchecked_cast")
-fun <V : View> Activity.getViewById(@IdRes id: Int): V {
-    return findViewById(id) as V
+inline fun <V : View> Activity.findView(@IdRes id: Int, configBlock: V.() -> Unit): V {
+    val view = findViewById<V>(id)
+    configBlock(view)
+    return view
 }
 
-inline fun <reified T : Activity> Activity.startActivityForResult(requestCode: Int,
-                                                                  action: String? = null,
-                                                                  flags: Int = -1,
-                                                                  noinline init: (Intent.() -> Unit)? = null) {
-
+inline fun <reified T : Activity> Activity.startActivityForResult(
+        requestCode: Int,
+        action: String? = null,
+        flags: Int = -1,
+        noinline init: (Intent.() -> Unit)? = null
+) {
     startActivityForResult(intentFor<T>(action, flags, init), requestCode)
 }
 
@@ -66,14 +63,16 @@ fun Activity.toggleSoftInput() {
     inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
 }
 
-fun Activity.setSoftInputMode(adjustment: SoftInputAdjustment = SoftInputAdjustment.SOFT_INPUT_ADJUST_UNSPECIFIED,
-                              visibility: SoftInputVisibility = SoftInputVisibility.SOFT_INPUT_STATE_UNSPECIFIED) {
-
+fun Activity.setSoftInputMode(
+        adjustment: SoftInputAdjustment = SoftInputAdjustment.SOFT_INPUT_ADJUST_UNSPECIFIED,
+        visibility: SoftInputVisibility = SoftInputVisibility.SOFT_INPUT_STATE_UNSPECIFIED
+) {
     window.setSoftInputMode(visibility.flag or adjustment.flag)
 }
 
-fun Activity.setSoftInputMode(adjustmentFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING,
-                              visibilityFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED) {
-
+fun Activity.setSoftInputMode(
+        adjustmentFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING,
+        visibilityFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED
+) {
     window.setSoftInputMode(adjustmentFlag or visibilityFlag)
 }

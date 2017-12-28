@@ -23,13 +23,13 @@ import android.view.View
 import android.view.ViewGroup
 
 val ViewGroup.views: List<View>
-    get() = (0..childCount - 1).map { getChildAt(it) }
+    get() = (0 until childCount).map(this::getChildAt)
 
-operator infix fun ViewGroup.plus(view: View) {
+operator infix fun ViewGroup.plusAssign(view: View) {
     addView(view)
 }
 
-operator infix fun ViewGroup.minus(view: View) {
+operator infix fun ViewGroup.minusAssign(view: View) {
     removeView(view)
 }
 
