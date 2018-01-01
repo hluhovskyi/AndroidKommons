@@ -21,8 +21,8 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 class BooleanPreferencesProperty(
-        val defaultValue: Boolean,
-        val key: String?
+    private val defaultValue: Boolean,
+    private val key: String?
 ) : ReadWriteProperty<SharedPreferencesProvider, Boolean> {
 
     override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): Boolean {

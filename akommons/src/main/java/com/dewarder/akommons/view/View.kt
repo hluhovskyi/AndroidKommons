@@ -20,6 +20,7 @@
 package com.dewarder.akommons.view
 
 import android.content.res.ColorStateList
+import android.support.annotation.IdRes
 import android.support.v4.view.ViewCompat
 import android.view.View
 
@@ -53,6 +54,12 @@ var View.translationAxisZ: Float
 /**
  * Methods
  */
+inline fun <V : View> View.findView(
+    @IdRes id: Int,
+    init: V.() -> Unit
+): V = findViewById<V>(id).apply(init)
+
+
 fun View.setAllPadding(padding: Int) {
     setPadding(padding, padding, padding, padding)
 }

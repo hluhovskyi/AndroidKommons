@@ -23,10 +23,17 @@ import android.app.Activity
 import android.app.Service
 import android.content.ComponentName
 import android.content.Intent
+import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
+import android.view.View
 import com.dewarder.akommons.content.*
+import com.dewarder.akommons.view.findView
 
+inline fun <V : View> Fragment.findView(
+    @IdRes id: Int,
+    init: V.() -> Unit
+): V = view!!.findView(id, init)
 
 /**
  * Intents

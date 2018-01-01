@@ -21,8 +21,8 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 class StringPreferencesProperty(
-        val defaultValue: String,
-        val key: String?
+    private val defaultValue: String,
+    private val key: String?
 ) : ReadWriteProperty<SharedPreferencesProvider, String> {
 
     override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): String {
