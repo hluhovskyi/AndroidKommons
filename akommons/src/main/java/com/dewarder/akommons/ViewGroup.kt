@@ -33,6 +33,4 @@ operator infix fun ViewGroup.minusAssign(view: View) {
     removeView(view)
 }
 
-operator fun ViewGroup.get(index: Int): View {
-    return getChildAt(index)
-}
+operator fun ViewGroup.get(index: Int): View = getChildAt(index)

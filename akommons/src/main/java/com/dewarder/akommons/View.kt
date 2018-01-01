@@ -19,7 +19,6 @@
 
 package com.dewarder.akommons
 
-import android.support.annotation.IdRes
 import android.view.View
 
 /**
@@ -34,19 +33,16 @@ var View.isVisible: Boolean
 /**
  * Methods
  */
-@Suppress("unchecked_cast")
-@Deprecated("Use findViewById instead", ReplaceWith("findViewById(id)"))
-fun <V : View> View.getViewById(@IdRes id: Int): V = findViewById(id)
-
 fun View.setAllPadding(padding: Int) {
     setPadding(padding, padding, padding, padding)
 }
 
-fun View.setOptionalPadding(left: Int = paddingLeft,
-                            top: Int = paddingTop,
-                            right: Int = paddingRight,
-                            bottom: Int = paddingBottom) {
-
+fun View.setOptionalPadding(
+    left: Int = paddingLeft,
+    top: Int = paddingTop,
+    right: Int = paddingRight,
+    bottom: Int = paddingBottom
+) {
     setPadding(left, top, right, bottom)
 }
 

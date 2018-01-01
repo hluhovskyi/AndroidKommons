@@ -20,33 +20,22 @@ package com.dewarder.akommons.preferences
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-open class CustomPreferencesProperty<T> : ReadWriteProperty<SharedPreferencesProvider, T> {
+open class CustomPreferencesProperty<T>(
+    defaultValue: T,
+    private val key: String?,
+    private val getMapper: (String) -> T,
+    private val setMapper: (T) -> String = { it.toString() }
+) : ReadWriteProperty<SharedPreferencesProvider, T> {
 
-    val defaultValue: T
-    val defaultValueRaw: String
-    val key: String?
-
-    val mapperFrom: (String) -> T
-    val mapperTo: (T) -> String
-
-    constructor(defaultValue: T, key: String?, mapperTo: (String) -> T) :
-            this(defaultValue, key, mapperTo, { it.toString() })
-
-    constructor(defaultValue: T, key: String?, mapperTo: (String) -> T, mapperFrom: (T) -> String) {
-        this.defaultValue = defaultValue
-        this.key = key
-        this.mapperFrom = mapperTo
-        this.mapperTo = mapperFrom
-        this.defaultValueRaw = mapperFrom(defaultValue)
-    }
+    private val defaultValueRaw: String = setMapper(defaultValue)
 
     override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): T {
         val key = property.name
-        return mapperFrom(thisRef.sharedPreferences.getString(key, defaultValueRaw))
+        return getMapper(thisRef.sharedPreferences.getString(key, defaultValueRaw))
     }
 
     override fun setValue(thisRef: SharedPreferencesProvider, property: KProperty<*>, value: T) {
         val key = property.name
-        thisRef.sharedPreferences.save(key, mapperTo(value))
+        thisRef.sharedPreferences.save(key, setMapper(value))
     }
 }

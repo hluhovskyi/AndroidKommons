@@ -22,18 +22,20 @@ package com.dewarder.akommons
 import android.os.Handler
 import android.os.Looper
 
-private val UI_HANDLER = Handler(Looper.getMainLooper())
+val uiHandler by lazy { Handler(Looper.getMainLooper()) }
 
-fun post(block: () -> Unit) {
-    UI_HANDLER.post(block)
-}
+fun post(block: () -> Unit) =
+    uiHandler.post(Runnable(block))
 
-fun postDelayed(delay: Long, block: () -> Unit) {
-    UI_HANDLER.postDelayed(block, delay)
-}
+fun postDelayed(delay: Long, block: () -> Unit) =
+    uiHandler.postDelayed(Runnable(block), delay)
 
 inline fun <reified T> Any.ifInstance(block: T.() -> Unit) {
-    if (this is T) {
-        block(this)
+    if (this is T) block(this)
+}
+
+inline fun ifDebug(block: () -> Unit) {
+    if (BuildConfig.DEBUG) {
+        block.invoke()
     }
 }

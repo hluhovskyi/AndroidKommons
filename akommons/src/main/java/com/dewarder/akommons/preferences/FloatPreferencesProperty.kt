@@ -21,8 +21,8 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 class FloatPreferencesProperty(
-        val defaultValue: Float,
-        val key: String?
+    private val defaultValue: Float,
+    private val key: String?
 ) : ReadWriteProperty<SharedPreferencesProvider, Float> {
 
     override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): Float {

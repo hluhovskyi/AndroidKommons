@@ -2,11 +2,13 @@ buildscript {
     dependencies {
         classpath dep.androidPlugin
         classpath dep.kotlinPlugin
+        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.2'
     }
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
     compileSdkVersion sdk_version

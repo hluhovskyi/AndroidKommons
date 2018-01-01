@@ -15,7 +15,7 @@
  *
  */
 
-@file:[JvmName("ContextUtils") Suppress("unused")]
+@file:[Suppress("unused")]
 
 package com.dewarder.akommons
 
@@ -74,27 +74,46 @@ import android.widget.Toast
 /**
  * Intents
  */
-inline fun <reified T : Any> Context.intentFor(action: String? = null,
-                                               flags: Int = -1,
-                                               noinline init: (Intent.() -> Unit)? = null): Intent {
-
-    val intent = Intent(this, T::class.java)
-    action?.let(intent::setAction)
-    if (action != null) {
-        intent.action = action
-    }
-    if (flags != -1) {
-        intent.flags = flags
-    }
-    init?.invoke(intent)
-    return intent
+inline fun <reified T : Any> Context.intentFor(
+    action: String? = null,
+    flags: Int = -1
+): Intent = Intent(this, T::class.java).apply {
+    this.action = action
+    this.flags = flags
 }
 
-inline fun <reified T : Activity> Context.startActivity(action: String? = null,
-                                                        flags: Int = -1,
-                                                        noinline init: (Intent.() -> Unit)? = null) {
-    startActivity(intentFor<T>(action, flags, init))
-}
+inline fun <reified T : Any> Context.intentFor(
+    action: String? = null,
+    flags: Int = -1,
+    init: Intent.() -> Unit
+): Intent = intentFor<T>(action, flags).apply(init)
+
+
+/**
+ * Activities
+ */
+inline fun <reified T : Activity> Context.startActivity(
+    action: String? = null,
+    flags: Int = -1
+) = startActivity(intentFor<T>(action, flags))
+
+inline fun <reified T : Activity> Context.startActivity(
+    action: String? = null,
+    flags: Int = -1,
+    init: Intent.() -> Unit
+) = startActivity(intentFor<T>(action, flags, init))
+
+/**
+ * Services
+ */
+inline fun <reified T : Service> Context.startService(
+    action: String? = null
+): ComponentName = startService(intentFor<T>(action = action))
+
+inline fun <reified T : Service> Context.startService(
+    action: String? = null,
+    init: Intent.() -> Unit
+): ComponentName = startService(intentFor<T>(action = action, init = init))
 
 fun Context.openLink(url: String) {
     openLink(Uri.parse(url))
@@ -104,53 +123,57 @@ fun Context.openLink(uri: Uri) {
     startActivity(Intent(Intent.ACTION_VIEW, uri))
 }
 
-inline fun <reified T : Service> Context.startService(action: String? = null,
-                                                      noinline init: (Intent.() -> Unit)? = null) {
-
-    startService(intentFor<T>(action = action, init = init))
-}
-
 /**
  * PendingIntent
  */
-
-inline fun <reified T : Any> Context.pendingIntentFor(intent: Intent,
-                                                      requestCode: Int = 0,
-                                                      pendingIntentFlags: Int = 0): PendingIntent {
-    val javaClass = T::class.java
-    return when {
-        Activity::class.java.isAssignableFrom(javaClass) -> {
+inline fun <reified T : Any> Context.pendingIntentFor(
+    intent: Intent,
+    requestCode: Int = 0,
+    pendingIntentFlags: Int = 0
+): PendingIntent = T::class.java.let { clazz ->
+    when {
+        Activity::class.java.isAssignableFrom(clazz) ->
             PendingIntent.getActivity(this, requestCode, intent, pendingIntentFlags)
-        }
 
-        Service::class.java.isAssignableFrom(javaClass) -> {
+        Service::class.java.isAssignableFrom(clazz) ->
             PendingIntent.getService(this, requestCode, intent, pendingIntentFlags)
-        }
 
-        BroadcastReceiver::class.java.isAssignableFrom(javaClass) -> {
+        BroadcastReceiver::class.java.isAssignableFrom(clazz) ->
             PendingIntent.getBroadcast(this, requestCode, intent, pendingIntentFlags)
-        }
 
         else -> throw IllegalStateException("PendingIntent must be used only with Activity, Service or BroadcastReceiver")
     }
 }
 
-inline fun <reified T : Any> Context.pendingIntentFor(action: String? = null,
-                                                      intentFlags: Int = -1,
-                                                      requestCode: Int = 0,
-                                                      pendingIntentFlags: Int = 0,
-                                                      noinline init: (Intent.() -> Unit)? = null): PendingIntent {
+inline fun <reified T : Any> Context.pendingIntentFor(
+    action: String? = null,
+    intentFlags: Int = -1,
+    requestCode: Int = 0,
+    pendingIntentFlags: Int = 0
+): PendingIntent = pendingIntentFor<T>(
+    intent = intentFor<T>(action, intentFlags),
+    requestCode = requestCode,
+    pendingIntentFlags = pendingIntentFlags
+)
 
-    return pendingIntentFor<T>(intentFor<T>(action, intentFlags, init), requestCode, pendingIntentFlags)
-}
+inline fun <reified T : Any> Context.pendingIntentFor(
+    action: String? = null,
+    intentFlags: Int = -1,
+    requestCode: Int = 0,
+    pendingIntentFlags: Int = 0,
+    init: Intent.() -> Unit
+): PendingIntent = pendingIntentFor<T>(
+    intent = intentFor<T>(action, intentFlags, init),
+    requestCode = requestCode,
+    pendingIntentFlags = pendingIntentFlags
+)
 
 /**
  * Services
  */
 @Suppress("unchecked_cast")
-fun <T> Context.getService(name: String): T {
-    return getSystemService(name) as T
-}
+fun <T> Context.getService(name: String): T
+    = getSystemService(name) as T
 
 val Context.accessibilityManager: AccessibilityManager
     get() = getService(Context.ACCESSIBILITY_SERVICE)
@@ -344,43 +367,36 @@ fun Context.showLongToast(text: String) {
 /**
  * Resources
  */
-fun Context.getAnimation(@AnimRes id: Int): Animation {
-    return AnimationUtils.loadAnimation(this, id)
-}
+fun Context.getAnimation(@AnimRes id: Int): Animation =
+    AnimationUtils.loadAnimation(this, id)
 
-fun Context.getAnimator(@AnimatorRes id: Int): Animator {
-    return AnimatorInflater.loadAnimator(this, id)
-}
+fun Context.getAnimator(@AnimatorRes id: Int): Animator =
+    AnimatorInflater.loadAnimator(this, id)
 
 /**
  * ContextCompat
  */
-fun Context.getThemedColor(@ColorRes resId: Int): Int {
-    return ContextCompat.getColor(this, resId)
-}
+fun Context.getThemedColor(@ColorRes resId: Int): Int =
+    ContextCompat.getColor(this, resId)
 
-fun Context.getThemedColorStateList(@ColorRes resId: Int): ColorStateList {
-    return ContextCompat.getColorStateList(this, resId)
-}
+fun Context.getThemedColorStateList(@ColorRes resId: Int): ColorStateList =
+    ContextCompat.getColorStateList(this, resId)
 
-fun Context.getThemedDrawable(@DrawableRes resId: Int): Drawable {
-    return ContextCompat.getDrawable(this, resId)
-}
+fun Context.getThemedDrawable(@DrawableRes resId: Int): Drawable =
+    ContextCompat.getDrawable(this, resId)
 
 /**
  * Permissions
  */
-fun Context.isPermissionsGranted(vararg permissions: Permission): Boolean {
-    return isPreLollipop() || permissions.all { permission ->
+fun Context.isPermissionsGranted(vararg permissions: Permission): Boolean =
+    isPreLollipop() || permissions.all { permission ->
         ContextCompat.checkSelfPermission(this, permission.value) == PackageManager.PERMISSION_GRANTED
     }
-}
 
-fun Context.isPermissionsGranted(vararg permissions: String): Boolean {
-    return isPreLollipop() || permissions.all { rawPermission ->
+fun Context.isPermissionsGranted(vararg permissions: String): Boolean =
+    isPreLollipop() || permissions.all { rawPermission ->
         ContextCompat.checkSelfPermission(this, rawPermission) == PackageManager.PERMISSION_GRANTED
     }
-}
 
 /**
  * Other
@@ -432,5 +448,5 @@ val Context.isConnectedToWifi: Boolean
     get() = connectivityManager.activeNetworkInfo?.type == ConnectivityManager.TYPE_WIFI
 
 @get:RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
-val Context.isConnectedToMobile: Boolean
+inline val Context.isConnectedToMobile: Boolean
     get() = connectivityManager.activeNetworkInfo?.type == ConnectivityManager.TYPE_MOBILE

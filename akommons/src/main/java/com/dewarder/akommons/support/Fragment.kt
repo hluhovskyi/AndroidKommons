@@ -17,32 +17,51 @@
 
 @file:[JvmName("SupportFragmentUtils") Suppress("unused")]
 
-package com.dewarder.akommons
+package com.dewarder.akommons.support
 
 import android.app.Activity
 import android.app.Service
+import android.content.ComponentName
 import android.content.Intent
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
+import com.dewarder.akommons.*
 
 
 /**
  * Intents
  */
-inline fun <reified T : Any> Fragment.intentFor(action: String? = null,
-                                                flags: Int = -1,
-                                                noinline initializer: (Intent.() -> Unit)? = null): Intent {
+inline fun <reified T : Any> Fragment.intentFor(
+    action: String? = null,
+    flags: Int = -1
+): Intent = context.intentFor<T>(action, flags)
 
-    return context.intentFor<T>(action, flags, initializer)
-}
+inline fun <reified T : Any> Fragment.intentFor(
+    action: String? = null,
+    flags: Int = -1,
+    init: Intent.() -> Unit
+): Intent = intentFor<T>(action, flags).apply(init)
 
-inline fun <reified T : Activity> Fragment.startActivity(action: String? = null, flags: Int = -1) {
-    startActivity(intentFor<T>(action, flags))
-}
+inline fun <reified T : Activity> Fragment.startActivity(
+    action: String? = null,
+    flags: Int = -1
+) = startActivity(intentFor<T>(action, flags))
 
-inline fun <reified T : Service> Fragment.startService(action: String? = null) {
-    context.startService(intentFor<T>(action))
-}
+inline fun <reified T : Activity> Fragment.startActivity(
+    action: String? = null,
+    flags: Int = -1,
+    init: Intent.() -> Unit
+) = startActivity(intentFor<T>(action, flags).apply(init))
+
+inline fun <reified T : Service> Fragment.startService(
+    action: String? = null
+): ComponentName = context.startService(intentFor<T>(action))
+
+inline fun <reified T : Service> Fragment.startService(
+    action: String? = null,
+    init: Intent.() -> Unit
+): ComponentName = context.startService(intentFor<T>(action = action, init = init))
+
 
 /**
  * Toasts
@@ -66,13 +85,11 @@ fun Fragment.showLongToast(text: String) {
 /**
  * Permissions
  */
-fun Fragment.isPermissionsGranted(vararg permissions: Permission): Boolean {
-    return context.isPermissionsGranted(*permissions)
-}
+fun Fragment.isPermissionsGranted(vararg permissions: Permission): Boolean =
+    context.isPermissionsGranted(*permissions)
 
-fun Fragment.isPermissionsGranted(vararg permissions: String): Boolean {
-    return context.isPermissionsGranted(*permissions)
-}
+fun Fragment.isPermissionsGranted(vararg permissions: String): Boolean =
+    context.isPermissionsGranted(*permissions)
 
 fun Fragment.requestPermissions(requestCode: Int, vararg permissions: Permission) {
     requestPermissions(permissions.map(Permission::value).toTypedArray(), requestCode)

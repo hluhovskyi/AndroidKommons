@@ -22,13 +22,17 @@ package com.dewarder.akommons
 import android.widget.SearchView
 import com.dewarder.akommons.adapters.SimpleSearchQueryListener
 
-fun SearchView.addOnQueryChangeListener(block: (String) -> Boolean) {
+inline fun SearchView.addOnQueryChangeListener(
+    crossinline block: (String) -> Boolean
+) {
     setOnQueryTextListener(object : SimpleSearchQueryListener() {
         override fun onQueryTextChange(newText: String): Boolean = block(newText)
     })
 }
 
-fun SearchView.addOnQuerySubmitListener(block: (String) -> Boolean) {
+inline fun SearchView.addOnQuerySubmitListener(
+    crossinline block: (String) -> Boolean
+) {
     setOnQueryTextListener(object : SimpleSearchQueryListener() {
         override fun onQueryTextSubmit(query: String): Boolean = block(query)
     })

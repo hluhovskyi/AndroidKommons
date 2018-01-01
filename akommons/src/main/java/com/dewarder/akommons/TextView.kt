@@ -24,21 +24,22 @@ import android.text.TextWatcher
 import android.widget.TextView
 import com.dewarder.akommons.adapters.SimpleTextWatcher
 
-fun TextView.addOnAfterTextChangedListener(listener: (Editable) -> Unit): TextWatcher {
-    val textWatcher = object : SimpleTextWatcher() {
-        override fun afterTextChanged(s: Editable) {
-            listener(s)
-        }
+inline fun TextView.addOnAfterTextChangedListener(
+    crossinline listener: (Editable) -> Unit
+): TextWatcher {
+    val watcher = object : SimpleTextWatcher() {
+        override fun afterTextChanged(s: Editable) = listener(s)
     }
-    addTextChangedListener(textWatcher)
-    return textWatcher
+    addTextChangedListener(watcher)
+    return watcher
 }
 
-fun TextView.addOnBeforeTextChangedListener(listener: (s: CharSequence, start: Int, count: Int, after: Int) -> Unit): TextWatcher {
+inline fun TextView.addOnBeforeTextChangedListener(
+    crossinline listener: (s: CharSequence, start: Int, count: Int, after: Int) -> Unit
+): TextWatcher {
     val textWatcher = object : SimpleTextWatcher() {
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) =
             listener(s, start, count, after)
-        }
     }
     addTextChangedListener(textWatcher)
     return textWatcher

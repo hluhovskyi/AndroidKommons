@@ -42,31 +42,31 @@ inline fun <R> SQLiteDatabase.use(block: (SQLiteDatabase) -> R): R {
 }
 
 fun SQLiteDatabase.executeQuery(
-        table: String,
-        columns: Array<String>? = null,
-        selection: String? = null,
-        selectionArgs: Array<String>? = null,
-        groupBy: String? = null,
-        having: String? = null,
-        orderBy: String? = null,
-        limit: String? = null
+    table: String,
+    columns: Array<String>? = null,
+    selection: String? = null,
+    selectionArgs: Array<String>? = null,
+    groupBy: String? = null,
+    having: String? = null,
+    orderBy: String? = null,
+    limit: String? = null
 ): Cursor = query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit)
 
 fun SQLiteDatabase.executeInsert(
-        table: String,
-        nullColumnHack: String? = null,
-        values: ContentValues
+    table: String,
+    nullColumnHack: String? = null,
+    values: ContentValues
 ): Long = insert(table, nullColumnHack, values)
 
 fun SQLiteDatabase.executeUpdate(
-        table: String,
-        values: ContentValues,
-        whereClause: String? = null,
-        whereArgs: Array<String>? = null
+    table: String,
+    values: ContentValues,
+    whereClause: String? = null,
+    whereArgs: Array<String>? = null
 ): Long = update(table, values, whereClause, whereArgs).toLong()
 
 fun SQLiteDatabase.executeDelete(
-        table: String,
-        whereClause: String? = null,
-        whereArgs: Array<String>? = null
+    table: String,
+    whereClause: String? = null,
+    whereArgs: Array<String>? = null
 ): Long = delete(table, whereClause, whereArgs).toLong()

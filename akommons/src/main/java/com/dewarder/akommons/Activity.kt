@@ -33,20 +33,23 @@ import android.widget.EditText
 val Activity.rootView: View
     get() = findViewById(android.R.id.content)
 
-inline fun <V : View> Activity.findView(@IdRes id: Int, configBlock: V.() -> Unit): V {
-    val view = findViewById<V>(id)
-    configBlock(view)
-    return view
-}
+inline fun <V : View> Activity.findView(
+    @IdRes id: Int,
+    init: V.() -> Unit
+): V = findViewById<V>(id).apply(init)
 
 inline fun <reified T : Activity> Activity.startActivityForResult(
-        requestCode: Int,
-        action: String? = null,
-        flags: Int = -1,
-        noinline init: (Intent.() -> Unit)? = null
-) {
-    startActivityForResult(intentFor<T>(action, flags, init), requestCode)
-}
+    requestCode: Int,
+    action: String? = null,
+    flags: Int = -1
+) = startActivityForResult(intentFor<T>(action, flags), requestCode)
+
+inline fun <reified T : Activity> Activity.startActivityForResult(
+    requestCode: Int,
+    action: String? = null,
+    flags: Int = -1,
+    init: Intent.() -> Unit
+) = startActivityForResult(intentFor<T>(action, flags, init), requestCode)
 
 /**
  * Keyboard
@@ -64,15 +67,15 @@ fun Activity.toggleSoftInput() {
 }
 
 fun Activity.setSoftInputMode(
-        adjustment: SoftInputAdjustment = SoftInputAdjustment.SOFT_INPUT_ADJUST_UNSPECIFIED,
-        visibility: SoftInputVisibility = SoftInputVisibility.SOFT_INPUT_STATE_UNSPECIFIED
+    adjustment: SoftInputAdjustment = SoftInputAdjustment.SOFT_INPUT_ADJUST_UNSPECIFIED,
+    visibility: SoftInputVisibility = SoftInputVisibility.SOFT_INPUT_STATE_UNSPECIFIED
 ) {
     window.setSoftInputMode(visibility.flag or adjustment.flag)
 }
 
 fun Activity.setSoftInputMode(
-        adjustmentFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING,
-        visibilityFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED
+    adjustmentFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING,
+    visibilityFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED
 ) {
     window.setSoftInputMode(adjustmentFlag or visibilityFlag)
 }

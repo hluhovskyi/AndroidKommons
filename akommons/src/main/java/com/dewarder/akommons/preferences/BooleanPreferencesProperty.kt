@@ -34,5 +34,4 @@ class BooleanPreferencesProperty(
         val key = key ?: property.name
         thisRef.sharedPreferences.save(key, value)
     }
-
 }

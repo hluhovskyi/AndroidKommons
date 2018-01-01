@@ -17,6 +17,34 @@
 
 package com.dewarder.akommons
 
+import android.os.Build
+
+inline fun ifApi(api: Api, block: () -> Unit) {
+    ifApi(api.sdkCode, block)
+}
+
+inline fun ifApi(sdkCode: Int, block: () -> Unit) {
+    if (Build.VERSION.SDK_INT >= sdkCode) {
+        block()
+    }
+}
+
+inline fun ifNotApi(api: Api, block: () -> Unit) {
+    ifNotApi(api.sdkCode, block)
+}
+
+inline fun ifNotApi(sdkCode: Int, block: () -> Unit) {
+    if (Build.VERSION.SDK_INT < sdkCode) {
+        block()
+    }
+}
+
+fun isLollipop(): Boolean =
+    Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+
+fun isPreLollipop(): Boolean =
+    Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP
+
 enum class Api(val sdkCode: Int) {
     BASE(1),
     BASE_1_1(2),
