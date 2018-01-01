@@ -17,12 +17,12 @@
 
 @file:JvmName("TextViewUtils")
 
-package com.dewarder.akommons
+package com.dewarder.akommons.widget
 
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.TextView
-import com.dewarder.akommons.adapters.SimpleTextWatcher
+import com.dewarder.akommons.widget.SimpleTextWatcher
 
 inline fun TextView.addOnAfterTextChangedListener(
     crossinline listener: (Editable) -> Unit

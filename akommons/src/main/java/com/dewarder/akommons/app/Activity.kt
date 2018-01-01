@@ -17,15 +17,13 @@
 
 @file:JvmName("ActivityUtils")
 
-package com.dewarder.akommons
+package com.dewarder.akommons.app
 
 import android.app.Activity
 import android.content.Intent
 import android.support.annotation.IdRes
 import android.view.View
-import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
+import com.dewarder.akommons.content.intentFor
 
 /**
  * Properties
@@ -50,32 +48,3 @@ inline fun <reified T : Activity> Activity.startActivityForResult(
     flags: Int = -1,
     init: Intent.() -> Unit
 ) = startActivityForResult(intentFor<T>(action, flags, init), requestCode)
-
-/**
- * Keyboard
- */
-fun Activity.showSoftInput(editText: EditText) {
-    inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_FORCED)
-}
-
-fun Activity.hideSoftInput() {
-    inputMethodManager.hideSoftInputFromWindow((currentFocus ?: rootView).windowToken, 0)
-}
-
-fun Activity.toggleSoftInput() {
-    inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-}
-
-fun Activity.setSoftInputMode(
-    adjustment: SoftInputAdjustment = SoftInputAdjustment.SOFT_INPUT_ADJUST_UNSPECIFIED,
-    visibility: SoftInputVisibility = SoftInputVisibility.SOFT_INPUT_STATE_UNSPECIFIED
-) {
-    window.setSoftInputMode(visibility.flag or adjustment.flag)
-}
-
-fun Activity.setSoftInputMode(
-    adjustmentFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING,
-    visibilityFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED
-) {
-    window.setSoftInputMode(adjustmentFlag or visibilityFlag)
-}

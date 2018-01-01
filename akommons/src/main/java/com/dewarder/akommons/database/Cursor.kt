@@ -15,13 +15,26 @@
  *
  */
 
-package com.dewarder.akommons.adapters
+@file:JvmName("CursorUtils")
 
-import android.support.v7.widget.SearchView
+package com.dewarder.akommons.database
 
-open class SimpleSupportSearchQueryListener : SearchView.OnQueryTextListener {
+import android.database.Cursor
 
-    override fun onQueryTextSubmit(query: String) = false
-
-    override fun onQueryTextChange(newText: String) = false
+inline fun <R> Cursor.use(block: (Cursor) -> R): R {
+    var closed = false
+    try {
+        return block(this)
+    } catch (e: Exception) {
+        closed = true
+        try {
+            close()
+        } catch (closeException: Exception) {
+        }
+        throw e
+    } finally {
+        if (!closed) {
+            close()
+        }
+    }
 }

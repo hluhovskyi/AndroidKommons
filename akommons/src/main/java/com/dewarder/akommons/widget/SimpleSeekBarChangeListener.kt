@@ -15,26 +15,18 @@
  *
  */
 
-@file:JvmName("TypedArrayUtils")
+package com.dewarder.akommons.widget
 
-package com.dewarder.akommons
+import android.widget.SeekBar
 
-import android.content.res.TypedArray
+open class SimpleSeekBarChangeListener : SeekBar.OnSeekBarChangeListener {
 
-inline fun <R> TypedArray.use(block: (TypedArray) -> R): R {
-    var recycled = false
-    try {
-        return block(this)
-    } catch (e: Exception) {
-        recycled = true
-        try {
-            recycle()
-        } catch (recycleException: Exception) {
-        }
-        throw e
-    } finally {
-        if (!recycled) {
-            recycle()
-        }
+    override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+    }
+
+    override fun onStartTrackingTouch(seekBar: SeekBar) {
+    }
+
+    override fun onStopTrackingTouch(seekBar: SeekBar) {
     }
 }

@@ -17,7 +17,7 @@
 
 @file:JvmName("ThemeUtils")
 
-package com.dewarder.akommons
+package com.dewarder.akommons.content.res
 
 import android.content.res.Resources
 import android.content.res.TypedArray

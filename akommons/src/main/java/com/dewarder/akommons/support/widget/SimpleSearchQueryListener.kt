@@ -15,18 +15,13 @@
  *
  */
 
-package com.dewarder.akommons.adapters
+package com.dewarder.akommons.support.widget
 
-import android.widget.SeekBar
+import android.support.v7.widget.SearchView
 
-open class SimpleSeekBarChangeListener : SeekBar.OnSeekBarChangeListener {
+open class SimpleSearchQueryListener : SearchView.OnQueryTextListener {
 
-    override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-    }
+    override fun onQueryTextSubmit(query: String) = false
 
-    override fun onStartTrackingTouch(seekBar: SeekBar) {
-    }
-
-    override fun onStopTrackingTouch(seekBar: SeekBar) {
-    }
+    override fun onQueryTextChange(newText: String) = false
 }

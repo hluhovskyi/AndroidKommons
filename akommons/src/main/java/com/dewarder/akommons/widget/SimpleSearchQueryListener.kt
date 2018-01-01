@@ -15,25 +15,13 @@
  *
  */
 
-@file:JvmName("SearchViewUtils")
-
-package com.dewarder.akommons
+package com.dewarder.akommons.widget
 
 import android.widget.SearchView
-import com.dewarder.akommons.adapters.SimpleSearchQueryListener
 
-inline fun SearchView.addOnQueryChangeListener(
-    crossinline block: (String) -> Boolean
-) {
-    setOnQueryTextListener(object : SimpleSearchQueryListener() {
-        override fun onQueryTextChange(newText: String): Boolean = block(newText)
-    })
-}
+open class SimpleSearchQueryListener : SearchView.OnQueryTextListener {
 
-inline fun SearchView.addOnQuerySubmitListener(
-    crossinline block: (String) -> Boolean
-) {
-    setOnQueryTextListener(object : SimpleSearchQueryListener() {
-        override fun onQueryTextSubmit(query: String): Boolean = block(query)
-    })
+    override fun onQueryTextSubmit(query: String) = false
+
+    override fun onQueryTextChange(newText: String) = false
 }

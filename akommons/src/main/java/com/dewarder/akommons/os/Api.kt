@@ -15,7 +15,7 @@
  *
  */
 
-package com.dewarder.akommons
+package com.dewarder.akommons.os
 
 import android.os.Build
 

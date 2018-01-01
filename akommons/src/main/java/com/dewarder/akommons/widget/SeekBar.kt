@@ -17,10 +17,9 @@
 
 @file:JvmName("SeekBarUtils")
 
-package com.dewarder.akommons
+package com.dewarder.akommons.widget
 
 import android.widget.SeekBar
-import com.dewarder.akommons.adapters.SimpleSeekBarChangeListener
 
 inline fun SeekBar.setOnProgressChangedListener(
     crossinline listener: (progress: Int, fromUser: Boolean) -> Unit

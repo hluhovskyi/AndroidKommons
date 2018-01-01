@@ -17,7 +17,7 @@
 
 @file:[JvmName("SupportFragmentUtils") Suppress("unused")]
 
-package com.dewarder.akommons.support
+package com.dewarder.akommons.support.app
 
 import android.app.Activity
 import android.app.Service
@@ -25,7 +25,7 @@ import android.content.ComponentName
 import android.content.Intent
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
-import com.dewarder.akommons.*
+import com.dewarder.akommons.content.*
 
 
 /**

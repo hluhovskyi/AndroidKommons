@@ -17,8 +17,10 @@
 
 @file:JvmName("ViewUtils")
 
-package com.dewarder.akommons
+package com.dewarder.akommons.view
 
+import android.content.res.ColorStateList
+import android.support.v4.view.ViewCompat
 import android.view.View
 
 /**
@@ -29,6 +31,24 @@ var View.isVisible: Boolean
     set(value) {
         visibility = if (value) View.VISIBLE else View.GONE
     }
+
+var View.isInvisible: Boolean
+    get() = visibility == View.INVISIBLE
+    set(value) {
+        visibility = if (value) View.INVISIBLE else View.VISIBLE
+    }
+
+var View.backgroundTintStateList: ColorStateList
+    get() = ViewCompat.getBackgroundTintList(this)
+    set(value) = ViewCompat.setBackgroundTintList(this, value)
+
+var View.axisZ: Float
+    get() = ViewCompat.getZ(this)
+    set(value) = ViewCompat.setZ(this, value)
+
+var View.translationAxisZ: Float
+    get() = ViewCompat.getTranslationZ(this)
+    set(value) = ViewCompat.setTranslationZ(this, value)
 
 /**
  * Methods

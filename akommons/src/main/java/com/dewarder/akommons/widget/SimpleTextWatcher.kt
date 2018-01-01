@@ -15,26 +15,19 @@
  *
  */
 
-@file:JvmName("CursorUtils")
+package com.dewarder.akommons.widget
 
-package com.dewarder.akommons
+import android.text.Editable
+import android.text.TextWatcher
 
-import android.database.Cursor
+open class SimpleTextWatcher : TextWatcher {
 
-inline fun <R> Cursor.use(block: (Cursor) -> R): R {
-    var closed = false
-    try {
-        return block(this)
-    } catch (e: Exception) {
-        closed = true
-        try {
-            close()
-        } catch (closeException: Exception) {
-        }
-        throw e
-    } finally {
-        if (!closed) {
-            close()
-        }
+    override fun afterTextChanged(s: Editable) {
+    }
+
+    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+    }
+
+    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
     }
 }

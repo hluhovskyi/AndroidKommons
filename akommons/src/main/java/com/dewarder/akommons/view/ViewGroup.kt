@@ -17,20 +17,27 @@
 
 @file:JvmName("ViewGroupUtils")
 
-package com.dewarder.akommons
+package com.dewarder.akommons.view
 
+import android.support.annotation.LayoutRes
 import android.view.View
 import android.view.ViewGroup
+import com.dewarder.akommons.content.inflate
 
 val ViewGroup.views: List<View>
     get() = (0 until childCount).map(this::getChildAt)
 
-operator infix fun ViewGroup.plusAssign(view: View) {
+infix operator fun ViewGroup.plusAssign(view: View) {
     addView(view)
 }
 
-operator infix fun ViewGroup.minusAssign(view: View) {
+infix operator fun ViewGroup.minusAssign(view: View) {
     removeView(view)
 }
 
 operator fun ViewGroup.get(index: Int): View = getChildAt(index)
+
+fun ViewGroup.inflateInto(
+    @LayoutRes layoutReId: Int,
+    attachToRoot: Boolean = false
+): View = context.inflate(layoutReId, this, attachToRoot)

@@ -17,7 +17,7 @@
 
 @file:JvmName("SQLiteDatabaseUtils")
 
-package com.dewarder.akommons
+package com.dewarder.akommons.database
 
 import android.content.ContentValues
 import android.database.Cursor

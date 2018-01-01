@@ -15,17 +15,25 @@
  *
  */
 
-@file:JvmName("BitmapUtils")
+@file:JvmName("TypedArrayUtils")
 
-package com.dewarder.akommons
+package com.dewarder.akommons.content.res
 
-import android.graphics.Bitmap
+import android.content.res.TypedArray
 
-inline fun <R> Bitmap.use(block: (Bitmap) -> R): R {
+inline fun <R> TypedArray.use(block: (TypedArray) -> R): R {
+    var recycled = false
     try {
         return block(this)
+    } catch (e: Exception) {
+        recycled = true
+        try {
+            recycle()
+        } catch (recycleException: Exception) {
+        }
+        throw e
     } finally {
-        if (!isRecycled) {
+        if (!recycled) {
             recycle()
         }
     }

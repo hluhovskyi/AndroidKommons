@@ -17,15 +17,14 @@
 
 @file:JvmName("SupportSearchViewUtils")
 
-package com.dewarder.akommons.support
+package com.dewarder.akommons.support.widget
 
 import android.support.v7.widget.SearchView
-import com.dewarder.akommons.adapters.SimpleSupportSearchQueryListener
 
 inline fun SearchView.addOnQueryChangeListener(
     crossinline block: (String) -> Boolean
 ) {
-    setOnQueryTextListener(object : SimpleSupportSearchQueryListener() {
+    setOnQueryTextListener(object : SimpleSearchQueryListener() {
         override fun onQueryTextChange(newText: String): Boolean = block(newText)
     })
 }
@@ -33,7 +32,7 @@ inline fun SearchView.addOnQueryChangeListener(
 inline fun SearchView.addOnQuerySubmitListener(
     crossinline block: (String) -> Boolean
 ) {
-    setOnQueryTextListener(object : SimpleSupportSearchQueryListener() {
+    setOnQueryTextListener(object : SimpleSearchQueryListener() {
         override fun onQueryTextSubmit(query: String): Boolean = block(query)
     })
 }

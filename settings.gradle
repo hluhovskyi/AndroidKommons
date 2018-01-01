@@ -1,4 +1,5 @@
-include ':akommons', ':sample'
+include ':akommons'
 include ':akommons-bindings'
 include ':akommons-bindings-support'
 include ':akommons-bindings-common-test'
+include ':sample'

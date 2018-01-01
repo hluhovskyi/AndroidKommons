@@ -15,13 +15,18 @@
  *
  */
 
-package com.dewarder.akommons.adapters
+@file:JvmName("BitmapUtils")
 
-import android.widget.SearchView
+package com.dewarder.akommons.graphics
 
-open class SimpleSearchQueryListener : SearchView.OnQueryTextListener {
+import android.graphics.Bitmap
 
-    override fun onQueryTextSubmit(query: String) = false
-
-    override fun onQueryTextChange(newText: String) = false
+inline fun <R> Bitmap.use(block: (Bitmap) -> R): R {
+    try {
+        return block(this)
+    } finally {
+        if (!isRecycled) {
+            recycle()
+        }
+    }
 }

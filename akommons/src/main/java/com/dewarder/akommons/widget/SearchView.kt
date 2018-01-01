@@ -15,19 +15,24 @@
  *
  */
 
-package com.dewarder.akommons.adapters
+@file:JvmName("SearchViewUtils")
 
-import android.text.Editable
-import android.text.TextWatcher
+package com.dewarder.akommons.widget
 
-open class SimpleTextWatcher : TextWatcher {
+import android.widget.SearchView
 
-    override fun afterTextChanged(s: Editable) {
-    }
+inline fun SearchView.addOnQueryChangeListener(
+    crossinline block: (String) -> Boolean
+) {
+    setOnQueryTextListener(object : SimpleSearchQueryListener() {
+        override fun onQueryTextChange(newText: String): Boolean = block(newText)
+    })
+}
 
-    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-    }
-
-    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-    }
+inline fun SearchView.addOnQuerySubmitListener(
+    crossinline block: (String) -> Boolean
+) {
+    setOnQueryTextListener(object : SimpleSearchQueryListener() {
+        override fun onQueryTextSubmit(query: String): Boolean = block(query)
+    })
 }
