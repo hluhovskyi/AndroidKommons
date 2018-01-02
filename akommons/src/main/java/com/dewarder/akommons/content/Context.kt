@@ -46,7 +46,10 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 
 /**
- * Intents
+ * Creates intent for specified [T] component of Android.
+ *
+ * @param action - value passed to [Intent.setAction]
+ * @param flags - value passed to [Intent.setFlags]
  */
 inline fun <reified T : Any> Context.intentFor(
     action: String? = null,
@@ -56,6 +59,10 @@ inline fun <reified T : Any> Context.intentFor(
     this.flags = flags
 }
 
+/**
+ * Creates intent for specified [T] component of Android and
+ * initialize it with [init] block.
+ */
 inline fun <reified T : Any> Context.intentFor(
     action: String? = null,
     flags: Int = -1,
@@ -89,11 +96,11 @@ inline fun <reified T : Service> Context.startService(
     init: Intent.() -> Unit
 ): ComponentName = startService(intentFor<T>(action = action, init = init))
 
-fun Context.openLink(url: String) {
-    openLink(Uri.parse(url))
+fun Context.browse(url: String) {
+    browse(Uri.parse(url))
 }
 
-fun Context.openLink(uri: Uri) {
+fun Context.browse(uri: Uri) {
     startActivity(Intent(Intent.ACTION_VIEW, uri))
 }
 
@@ -143,7 +150,7 @@ inline fun <reified T : Any> Context.pendingIntentFor(
 )
 
 /**
- * Toasts
+ * Shows short [Toast] with specified string resource.
  */
 fun Context.showShortToast(@StringRes resId: Int) {
     Toast.makeText(this, resId, Toast.LENGTH_SHORT).show()

@@ -6,26 +6,46 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.dewarder.akommons.content.inputMethodManager
 
-fun Activity.showSoftInput(editText: EditText) {
+/**
+ * Shortcut for [InputMethodManager.showSoftInput]
+ */
+public fun Activity.showSoftInput(editText: EditText) {
     inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_FORCED)
 }
 
-fun Activity.hideSoftInput() {
+/**
+ * Shortcut for [InputMethodManager.hideSoftInputFromWindow]
+ */
+public fun Activity.hideSoftInput() {
     inputMethodManager.hideSoftInputFromWindow((currentFocus ?: rootView).windowToken, 0)
 }
 
-fun Activity.toggleSoftInput() {
-    inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+/**
+ * Shortcut for [InputMethodManager.toggleSoftInput]
+ */
+public fun Activity.toggleSoftInput(
+    showFlags: Int = InputMethodManager.SHOW_FORCED,
+    hideFlags: Int = 0
+) {
+    inputMethodManager.toggleSoftInput(showFlags, hideFlags)
 }
 
-fun Activity.setSoftInputMode(
+/**
+ * Shortcut for [android.view.Window.setSoftInputMode] which uses
+ * enums instead of raw int flags
+ */
+public fun Activity.setSoftInputMode(
     adjustment: SoftInputAdjustment = SoftInputAdjustment.SOFT_INPUT_ADJUST_UNSPECIFIED,
     visibility: SoftInputVisibility = SoftInputVisibility.SOFT_INPUT_STATE_UNSPECIFIED
 ) {
-    window.setSoftInputMode(visibility.flag or adjustment.flag)
+    setSoftInputMode(adjustment.flag, visibility.flag)
 }
 
-fun Activity.setSoftInputMode(
+/**
+ * Shortcut for [android.view.Window.setSoftInputMode] which uses
+ * [WindowManager.LayoutParams] flags to specify adjustment and visibility
+ */
+public fun Activity.setSoftInputMode(
     adjustmentFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING,
     visibilityFlag: Int = WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED
 ) {

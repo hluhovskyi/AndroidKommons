@@ -45,7 +45,9 @@ inline fun TextView.addOnBeforeTextChangedListener(
     return textWatcher
 }
 
-fun TextView.addOnTextChangedListener(listener: (s: CharSequence, start: Int, before: Int, count: Int) -> Unit): TextWatcher {
+inline fun TextView.addOnTextChangedListener(
+    crossinline listener: (s: CharSequence, start: Int, before: Int, count: Int) -> Unit
+): TextWatcher {
     val textWatcher = object : SimpleTextWatcher() {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
             listener(s, start, before, count)

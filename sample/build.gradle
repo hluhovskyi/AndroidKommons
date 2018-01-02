@@ -1,0 +1,37 @@
+buildscript {
+    dependencies {
+        classpath dep.androidPlugin
+        classpath dep.kotlinPlugin
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        applicationId "com.dewarder.akommons.sample"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    api project(":akommons")
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+}

@@ -15,23 +15,27 @@
  *
  */
 
-package com.dewarder.akommons.preferences
+package com.dewarder.akommons.content.preferences
 
+import java.util.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-class StringPreferencesProperty(
-    private val defaultValue: String,
+open class CalendarPreferencesProperty(
+    private val defaultValue: Long,
     private val key: String?
-) : ReadWriteProperty<SharedPreferencesProvider, String> {
+) : ReadWriteProperty<SharedPreferencesProvider, Calendar> {
 
-    override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): String {
+    override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): Calendar {
         val key = key ?: property.name
-        return thisRef.sharedPreferences.getString(key, defaultValue)
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = thisRef.sharedPreferences.getLong(key, defaultValue)
+        return calendar
     }
 
-    override fun setValue(thisRef: SharedPreferencesProvider, property: KProperty<*>, value: String) {
+    override fun setValue(thisRef: SharedPreferencesProvider, property: KProperty<*>, value: Calendar) {
         val key = key ?: property.name
-        thisRef.sharedPreferences.save(key, value)
+        thisRef.sharedPreferences.save(key, value.timeInMillis)
     }
+
 }

@@ -15,7 +15,7 @@
  *
  */
 
-package com.dewarder.akommons.preferences
+package com.dewarder.akommons.content.preferences
 
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty

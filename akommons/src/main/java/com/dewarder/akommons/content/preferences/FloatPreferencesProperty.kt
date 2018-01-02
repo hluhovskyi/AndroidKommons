@@ -15,27 +15,23 @@
  *
  */
 
-package com.dewarder.akommons.preferences
+package com.dewarder.akommons.content.preferences
 
-import java.util.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-open class DatePreferencesProperty(
-    private val defaultValue: Long,
+class FloatPreferencesProperty(
+    private val defaultValue: Float,
     private val key: String?
-) : ReadWriteProperty<SharedPreferencesProvider, Date> {
+) : ReadWriteProperty<SharedPreferencesProvider, Float> {
 
-    override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): Date {
+    override fun getValue(thisRef: SharedPreferencesProvider, property: KProperty<*>): Float {
         val key = key ?: property.name
-        val date = Date()
-        date.time = thisRef.sharedPreferences.getLong(key, defaultValue)
-        return date
+        return thisRef.sharedPreferences.getFloat(key, defaultValue)
     }
 
-    override fun setValue(thisRef: SharedPreferencesProvider, property: KProperty<*>, value: Date) {
+    override fun setValue(thisRef: SharedPreferencesProvider, property: KProperty<*>, value: Float) {
         val key = key ?: property.name
-        thisRef.sharedPreferences.save(key, value.time)
+        thisRef.sharedPreferences.save(key, value)
     }
-
 }
