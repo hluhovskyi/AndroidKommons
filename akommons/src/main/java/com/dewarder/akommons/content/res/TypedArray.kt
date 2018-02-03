@@ -19,7 +19,13 @@
 
 package com.dewarder.akommons.content.res
 
+import android.content.Context
+import android.content.res.Resources
 import android.content.res.TypedArray
+import android.support.annotation.AttrRes
+import android.support.annotation.StyleRes
+import android.support.annotation.StyleableRes
+import android.util.AttributeSet
 
 inline fun <R> TypedArray.use(block: (TypedArray) -> R): R {
     var recycled = false
@@ -38,3 +44,15 @@ inline fun <R> TypedArray.use(block: (TypedArray) -> R): R {
         }
     }
 }
+
+inline fun <R> Context.useStyledAttributes(@StyleableRes attrs: IntArray, block: (TypedArray) -> R): R
+    = obtainStyledAttributes(attrs).use(block)
+
+inline fun <R> Context.useStyledAttributes(@StyleRes resid: Int, @StyleableRes attrs: IntArray, block: (TypedArray) -> R): R
+    = obtainStyledAttributes(resid, attrs).use(block)
+
+inline fun <R> Context.useStyledAttributes(set: AttributeSet, @StyleableRes attrs: IntArray, block: (TypedArray) -> R): R
+    = obtainStyledAttributes(set, attrs).use(block)
+
+inline fun <R> Context.useStyledAttributes(set: AttributeSet, @StyleableRes attrs: IntArray, @AttrRes defStyleAttr: Int, @StyleRes defStyleRes: Int, block: (TypedArray) -> R): R
+    = obtainStyledAttributes(set, attrs, defStyleAttr, defStyleRes).use(block)
