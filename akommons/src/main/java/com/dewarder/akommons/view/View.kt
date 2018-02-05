@@ -20,7 +20,9 @@
 package com.dewarder.akommons.view
 
 import android.content.res.ColorStateList
+import android.os.Build
 import android.support.annotation.IdRes
+import android.support.annotation.RequiresApi
 import android.support.v4.view.ViewCompat
 import android.view.View
 
@@ -71,6 +73,17 @@ fun View.setOptionalPadding(
     bottom: Int = paddingBottom
 ) {
     setPadding(left, top, right, bottom)
+}
+
+
+@RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+fun View.setOptionalPaddingRelative(
+        start: Int = paddingStart,
+        top: Int = paddingTop,
+        end: Int = paddingEnd,
+        bottom: Int = paddingBottom
+) {
+    setPaddingRelative(start, top, end, bottom)
 }
 
 /**

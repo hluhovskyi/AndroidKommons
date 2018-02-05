@@ -32,18 +32,21 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.support.annotation.*
 import android.support.v4.content.ContextCompat
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import com.dewarder.akommons.content.res.use
 
 /**
  * Creates intent for specified [T] component of Android.
@@ -246,3 +249,23 @@ val Context.isConnectedToWifi: Boolean
 @get:RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
 inline val Context.isConnectedToMobile: Boolean
     get() = connectivityManager.activeNetworkInfo?.type == ConnectivityManager.TYPE_MOBILE
+
+
+/**
+ * Use styled attributes [TypedArray] ensuring it's recycled afterwards
+ */
+inline fun <R> Context.useStyledAttributes(@StyleableRes attrs: IntArray,
+                                           block: (TypedArray) -> R): R
+        = obtainStyledAttributes(attrs).use(block)
+
+inline fun <R> Context.useStyledAttributes(@StyleRes resId: Int,
+                                           @StyleableRes attrs: IntArray,
+                                           block: (TypedArray) -> R): R
+        = obtainStyledAttributes(resId, attrs).use(block)
+
+inline fun <R> Context.useStyledAttributes(set: AttributeSet,
+                                           @StyleableRes attrs: IntArray,
+                                           @AttrRes defStyleAttr: Int = 0,
+                                           @StyleRes defStyleRes: Int = 0,
+                                           block: (TypedArray) -> R): R
+        = obtainStyledAttributes(set, attrs, defStyleAttr, defStyleRes).use(block)
