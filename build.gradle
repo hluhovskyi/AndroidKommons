@@ -12,3 +12,21 @@ subprojects {
 }
 
 apply from: rootProject.file("gradle/dependencies.gradle")
+
+subprojects {
+    buildscript {
+        dependencies {
+            classpath dep.androidPlugin
+            classpath dep.kotlinPlugin
+            classpath dep.bintrayPlugin
+        }
+    }
+}
+
+task javadoc(type: Javadoc) {
+    excludes = ['**/*.kt']
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

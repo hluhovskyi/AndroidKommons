@@ -1,12 +1,6 @@
-buildscript {
-    dependencies {
-        classpath dep.androidPlugin
-        classpath dep.kotlinPlugin
-    }
-}
-
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply from: 'bintray.gradle'
 
 android {
     compileSdkVersion sdk_version

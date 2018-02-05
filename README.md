@@ -12,7 +12,7 @@ Yet another library that contains common extensions for Android. Aims:
 Add library as dependency to your build.gradle.
 
 ```
-compile 'com.dewarder:akommons:0.0.4'
+Deployment in process
 
 ```
 Probably you don't need all extensions so just copy-paste needed ones.

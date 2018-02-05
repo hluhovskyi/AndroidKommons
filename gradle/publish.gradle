@@ -1,0 +1,5 @@
+ext {
+    publish_userOrg = 'dewarder'
+    publish_groupId = 'com.dewarder'
+    publish_website = 'https://github.com/dewarder/AndroidKommons'
+}
