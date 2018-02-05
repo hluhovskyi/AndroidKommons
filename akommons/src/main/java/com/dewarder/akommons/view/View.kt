@@ -62,14 +62,18 @@ inline fun <V : View> View.findView(
 ): V = findViewById<V>(id).apply(init)
 
 
-fun View.setAllPadding(padding: Int) = setPadding(padding, padding, padding, padding)
+fun View.setAllPadding(padding: Int) {
+    setPadding(padding, padding, padding, padding)
+}
 
 fun View.setOptionalPadding(
     left: Int = paddingLeft,
     top: Int = paddingTop,
     right: Int = paddingRight,
     bottom: Int = paddingBottom
-) = setPadding(left, top, right, bottom)
+) {
+    setPadding(left, top, right, bottom)
+}
 
 
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -78,19 +82,25 @@ fun View.setOptionalPaddingRelative(
         top: Int = paddingTop,
         end: Int = paddingEnd,
         bottom: Int = paddingBottom
-) = setPaddingRelative(start, top, end, bottom)
+) {
+    setPaddingRelative(start, top, end, bottom)
+}
 
 /**
  * Post functions
  */
-inline fun <T : View> T.postLet(crossinline block: (T) -> Unit)
-        = post { block(this) }
+inline fun <T : View> T.postLet(crossinline block: (T) -> Unit) {
+    post { block(this) }
+}
 
-inline fun <T : View> T.postDelayedLet(delay: Long, crossinline block: (T) -> Unit)
-        = postDelayed({ block(this) }, delay)
+inline fun <T : View> T.postDelayedLet(delay: Long, crossinline block: (T) -> Unit) {
+    postDelayed({ block(this) }, delay)
+}
 
-inline fun <T : View> T.postApply(crossinline block: T.() -> Unit)
-        = post { block(this) }
+inline fun <T : View> T.postApply(crossinline block: T.() -> Unit) {
+    post { block(this) }
+}
 
-inline fun <T : View> T.postDelayedApply(delay: Long, crossinline block: T.() -> Unit)
-        = postDelayed({ block(this) }, delay)
+inline fun <T : View> T.postDelayedApply(delay: Long, crossinline block: T.() -> Unit) {
+    postDelayed({ block(this) }, delay)
+}
