@@ -60,13 +60,14 @@ Starting activities
     }
 ```
 
-Easy padding
+View padding
 
 ```
 override fun onCreate(savedInstanceState: Bundle) {
     ...
-    firstView.setOptionalPadding(bottom = 16)   
-    secondView.setAllPadding(16)
+    firstView.setOptionalPadding(bottom = 16)
+    secondView.setOptionalPaddingRelative(top = 16)
+    thirdView.setAllPadding(16)
     ...
 }
 ```
